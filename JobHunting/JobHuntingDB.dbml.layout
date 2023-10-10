@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12, 12.125" name="JobHuntingDB">
+  <DataContextMoniker Name="/JobHuntingDBDataContext" />
+  <nestedChildShapes>
+    <classShape Id="ee8e0b89-7210-4266-8cf1-54a1678889dc" absoluteBounds="0.75, 0.75, 2, 1.1939925130208335">
+      <DataClassMoniker Name="/JobHuntingDBDataContext/tbl_category" />
+      <nestedChildShapes>
+        <elementListCompartment Id="72b5e001-2a57-4ad4-a5b6-ea2aa522262a" absoluteBounds="0.765, 1.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4671e303-ef3e-43a9-9dcb-e99c432cb0f0" absoluteBounds="0.75, 2.75, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/JobHuntingDBDataContext/tbl_city" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2af81bf4-ad6e-4413-8fb8-19b36fa579a9" absoluteBounds="0.765, 3.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6da3e92c-0b3d-4724-98dd-6c96b3ad46c4" absoluteBounds="3.75, 0.75, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/JobHuntingDBDataContext/tbl_company" />
+      <nestedChildShapes>
+        <elementListCompartment Id="05224d96-df82-4cec-8a2e-527fbaecc535" absoluteBounds="3.765, 1.21, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a2500e86-74f6-4c41-9b46-624ed92f0bf0" absoluteBounds="3.75, 4.75, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/JobHuntingDBDataContext/tbl_country" />
+      <nestedChildShapes>
+        <elementListCompartment Id="835e46b4-978f-4c15-885d-1606ae177433" absoluteBounds="3.765, 5.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f39397ba-162d-4ce6-9c9d-6bf01c59d639" absoluteBounds="6.75, 0.75, 2, 3.3093082682291666">
+      <DataClassMoniker Name="/JobHuntingDBDataContext/tbl_job" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c0074841-2314-431a-9612-2ef7d6f4dbba" absoluteBounds="6.765, 1.21, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="91db4d9c-689e-4cbd-84af-38be4920af6a" absoluteBounds="0.75, 6.75, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/JobHuntingDBDataContext/tbl_jobapply" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a566d028-8498-42f7-9a21-123eef080969" absoluteBounds="0.765, 7.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5995a74b-f173-4a0c-99d6-e6d278630ef4" absoluteBounds="3.75, 6.75, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/JobHuntingDBDataContext/tbl_joblocation" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9c1a56f3-0134-4b5f-9322-e8ad7cf4ab93" absoluteBounds="3.765, 7.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="477688bd-bb6f-4bf2-a487-0b6387702338" absoluteBounds="6.75, 5.75, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/JobHuntingDBDataContext/tbl_jobposition" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4bf90770-f128-4b10-aedf-2d1b80f62109" absoluteBounds="6.765, 6.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="520ac276-2e74-4476-b171-d8d0fc4afdfa" absoluteBounds="6.75, 7.75, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/JobHuntingDBDataContext/tbl_jobrole" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5674104f-2f7a-4393-be96-0c33946397c8" absoluteBounds="6.765, 8.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="41b3ab48-5048-4f88-99e8-c652914d3d6f" absoluteBounds="9.75, 0.75, 2, 1.1939925130208335">
+      <DataClassMoniker Name="/JobHuntingDBDataContext/tbl_jobtype" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d6447d29-02a5-4793-b349-b6416215ec1d" absoluteBounds="9.765, 1.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ecf39067-366d-47bf-9dfa-e20d8ccaf478" absoluteBounds="0.75, 9.75, 2, 1.3862939453124987">
+      <DataClassMoniker Name="/JobHuntingDBDataContext/tbl_skill" />
+      <nestedChildShapes>
+        <elementListCompartment Id="542969b5-653c-4e66-bc3d-74d3485528d1" absoluteBounds="0.765, 10.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="098aa6dd-9756-4972-aa10-9345bf8b2589" absoluteBounds="9.75, 2.75, 2, 2.347801106770834">
+      <DataClassMoniker Name="/JobHuntingDBDataContext/tbl_user" />
+      <nestedChildShapes>
+        <elementListCompartment Id="dc9e3f9a-1f05-4d55-aa71-3bb505107b5e" absoluteBounds="9.765, 3.21, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0dc7ba79-6c10-4412-aa0c-6a111ccd0006" absoluteBounds="3.75, 9.75, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/JobHuntingDBDataContext/tbl_userdocument" />
+      <nestedChildShapes>
+        <elementListCompartment Id="72dc5c3b-e40a-4ceb-8ffd-4d29cae6addd" absoluteBounds="3.765, 10.21, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="632b3935-3125-4e79-9746-0b4364143ee6" absoluteBounds="9.75, 6.75, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/JobHuntingDBDataContext/tbl_userprofile" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e96d9c93-5074-418a-9530-c8b0529cae4d" absoluteBounds="9.765, 7.21, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="85656d34-ef4e-4ecb-8ae7-4167461cec6b" absoluteBounds="6.75, 9.75, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/JobHuntingDBDataContext/tbl_workexperience" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6e2c5657-6680-48af-a210-7993fb1655f5" absoluteBounds="6.765, 10.21, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

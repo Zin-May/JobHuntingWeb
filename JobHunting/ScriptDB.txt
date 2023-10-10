@@ -1,0 +1,343 @@
+﻿USE [master]
+GO
+/****** Object:  Database [JobHunting]    Script Date: 10/10/2023 9:26:29 PM ******/
+CREATE DATABASE [JobHunting]
+GO
+ALTER DATABASE [JobHunting] SET COMPATIBILITY_LEVEL = 160
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [JobHunting].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [JobHunting] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [JobHunting] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [JobHunting] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [JobHunting] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [JobHunting] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [JobHunting] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [JobHunting] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [JobHunting] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [JobHunting] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [JobHunting] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [JobHunting] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [JobHunting] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [JobHunting] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [JobHunting] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [JobHunting] SET  DISABLE_BROKER 
+GO
+ALTER DATABASE [JobHunting] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [JobHunting] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [JobHunting] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [JobHunting] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [JobHunting] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [JobHunting] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [JobHunting] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [JobHunting] SET RECOVERY SIMPLE 
+GO
+ALTER DATABASE [JobHunting] SET  MULTI_USER 
+GO
+ALTER DATABASE [JobHunting] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [JobHunting] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [JobHunting] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [JobHunting] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [JobHunting] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [JobHunting] SET ACCELERATED_DATABASE_RECOVERY = OFF  
+GO
+ALTER DATABASE [JobHunting] SET QUERY_STORE = ON
+GO
+ALTER DATABASE [JobHunting] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, CLEANUP_POLICY = (STALE_QUERY_THRESHOLD_DAYS = 30), DATA_FLUSH_INTERVAL_SECONDS = 900, INTERVAL_LENGTH_MINUTES = 60, MAX_STORAGE_SIZE_MB = 1000, QUERY_CAPTURE_MODE = AUTO, SIZE_BASED_CLEANUP_MODE = AUTO, MAX_PLANS_PER_QUERY = 200, WAIT_STATS_CAPTURE_MODE = ON)
+GO
+USE [JobHunting]
+GO
+/****** Object:  Table [dbo].[tbl_category]    Script Date: 10/10/2023 9:26:29 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tbl_category](
+	[CategoryID] [char](36) NOT NULL,
+	[CategoryName] [varchar](100) NULL,
+ CONSTRAINT [PK_tbl_category] PRIMARY KEY CLUSTERED 
+(
+	[CategoryID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tbl_city]    Script Date: 10/10/2023 9:26:29 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tbl_city](
+	[CityID] [char](36) NOT NULL,
+	[CityName] [varchar](100) NULL,
+	[CountryID] [char](36) NULL,
+ CONSTRAINT [PK_tbl_city] PRIMARY KEY CLUSTERED 
+(
+	[CityID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tbl_company]    Script Date: 10/10/2023 9:26:29 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tbl_company](
+	[CompanyID] [char](36) NOT NULL,
+	[CompanyName] [varchar](100) NULL,
+	[CompanyImage] [varbinary](max) NULL,
+	[Description] [varchar](200) NULL,
+	[Address] [varchar](50) NULL,
+	[Phone] [varchar](50) NULL,
+	[Email] [varchar](50) NULL,
+	[EmployeeCount] [int] NULL,
+ CONSTRAINT [PK_tbl_company] PRIMARY KEY CLUSTERED 
+(
+	[CompanyID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tbl_country]    Script Date: 10/10/2023 9:26:29 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tbl_country](
+	[CountryID] [char](36) NOT NULL,
+	[CountryName] [varchar](100) NULL,
+ CONSTRAINT [PK_tbl_country] PRIMARY KEY CLUSTERED 
+(
+	[CountryID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tbl_job]    Script Date: 10/10/2023 9:26:29 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tbl_job](
+	[JobID] [char](36) NOT NULL,
+	[CompanyID] [char](36) NULL,
+	[JobRoleID] [char](36) NULL,
+	[JobTypeID] [char](36) NULL,
+	[CategoryID] [char](36) NULL,
+	[JobLocationID] [char](36) NULL,
+	[Allowence] [varchar](max) NULL,
+	[Salary] [int] NULL,
+	[JobDescription] [varchar](max) NULL,
+	[JobResponsibility] [varchar](max) NULL,
+	[CreatedDate] [datetime] NULL,
+	[UpdatedDate] [datetime] NULL,
+	[Status] [varchar](50) NULL,
+ CONSTRAINT [PK_tbl_job] PRIMARY KEY CLUSTERED 
+(
+	[JobID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tbl_jobapply]    Script Date: 10/10/2023 9:26:29 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tbl_jobapply](
+	[JobApplyID] [char](36) NOT NULL,
+	[UserID] [char](36) NULL,
+	[JobID] [char](36) NULL,
+	[CreatedDate] [datetime] NULL,
+ CONSTRAINT [PK_tbl_jobapply] PRIMARY KEY CLUSTERED 
+(
+	[JobApplyID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tbl_joblocation]    Script Date: 10/10/2023 9:26:29 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tbl_joblocation](
+	[JobLocationID] [char](36) NOT NULL,
+	[JobStreetAddress] [nvarchar](200) NULL,
+	[CityID] [char](36) NULL,
+ CONSTRAINT [PK_tbl_joblocation] PRIMARY KEY CLUSTERED 
+(
+	[JobLocationID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tbl_jobposition]    Script Date: 10/10/2023 9:26:29 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tbl_jobposition](
+	[JobPositionID] [char](36) NOT NULL,
+	[JobPositionName] [varchar](100) NULL,
+ CONSTRAINT [PK_tbl_jobposition] PRIMARY KEY CLUSTERED 
+(
+	[JobPositionID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tbl_jobrole]    Script Date: 10/10/2023 9:26:29 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tbl_jobrole](
+	[JobRoleID] [char](36) NOT NULL,
+	[JobRoleName] [varchar](20) NULL,
+ CONSTRAINT [PK_tbl_jobrole] PRIMARY KEY CLUSTERED 
+(
+	[JobRoleID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tbl_jobtype]    Script Date: 10/10/2023 9:26:29 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tbl_jobtype](
+	[JobTypeID] [char](36) NOT NULL,
+	[JobTypeName] [varchar](20) NULL,
+ CONSTRAINT [PK_tbl_jobtype] PRIMARY KEY CLUSTERED 
+(
+	[JobTypeID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tbl_skill]    Script Date: 10/10/2023 9:26:29 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tbl_skill](
+	[SkillID] [char](36) NULL,
+	[SkillName] [varchar](100) NULL,
+	[UserProfileID] [char](36) NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tbl_user]    Script Date: 10/10/2023 9:26:30 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tbl_user](
+	[UserID] [char](36) NOT NULL,
+	[UserName] [varchar](100) NULL,
+	[Email] [varchar](50) NULL,
+	[Password] [varchar](30) NULL,
+	[Phone] [varchar](50) NULL,
+	[IsAdmin] [bit] NULL,
+	[CreatedDate] [datetime] NULL,
+	[UpdatedDate] [datetime] NULL,
+ CONSTRAINT [PK_tbl_user] PRIMARY KEY CLUSTERED 
+(
+	[UserID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tbl_userdocument]    Script Date: 10/10/2023 9:26:30 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tbl_userdocument](
+	[UserDocumentID] [char](36) NULL,
+	[UserID] [char](36) NULL,
+	[DocumentName] [varchar](100) NULL,
+	[DocumentType] [varchar](50) NULL,
+	[DocumentURL] [varchar](max) NULL,
+	[CreatedDate] [datetime] NULL,
+	[Status] [varchar](200) NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tbl_userprofile]    Script Date: 10/10/2023 9:26:30 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tbl_userprofile](
+	[UserProfileID] [char](36) NOT NULL,
+	[UserImage] [varbinary](max) NULL,
+	[DateOfBirth] [datetime] NULL,
+	[Address] [varchar](100) NULL,
+	[Education] [varchar](max) NULL,
+	[SocialMediaLink] [varchar](max) NULL,
+	[UserID] [char](36) NULL,
+ CONSTRAINT [PK_tbl_userprofile] PRIMARY KEY CLUSTERED 
+(
+	[UserProfileID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tbl_workexperience]    Script Date: 10/10/2023 9:26:30 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tbl_workexperience](
+	[WorkExperienceID] [char](36) NOT NULL,
+	[CompanyID] [char](36) NULL,
+	[Position] [varchar](50) NULL,
+	[StartDate] [datetime] NULL,
+	[EndDate] [datetime] NULL,
+	[IsCurrentJob] [bit] NULL,
+	[UserProfileID] [char](36) NULL,
+ CONSTRAINT [PK_tbl_workexperience] PRIMARY KEY CLUSTERED 
+(
+	[WorkExperienceID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+INSERT [dbo].[tbl_category] ([CategoryID], [CategoryName]) VALUES (N'26252ee2-bbf8-424a-93a1-8a37171d2a63', N'Engineer')
+GO
+INSERT [dbo].[tbl_category] ([CategoryID], [CategoryName]) VALUES (N'bc8f66e8-d9d5-4960-8902-a0d2b33e3eda', N'IT')
+GO
+INSERT [dbo].[tbl_jobrole] ([JobRoleID], [JobRoleName]) VALUES (N'4f2d0b8e-e7c5-4617-96c8-8309e7c26c8d', N'Part Time')
+GO
+INSERT [dbo].[tbl_jobrole] ([JobRoleID], [JobRoleName]) VALUES (N'88803942-0d70-4162-a745-d7b7a84dec00', N'Full Time')
+GO
+INSERT [dbo].[tbl_jobrole] ([JobRoleID], [JobRoleName]) VALUES (N'892ad3a4-45d6-4290-8496-7ce714b967b1', N'Contract')
+GO
+INSERT [dbo].[tbl_jobtype] ([JobTypeID], [JobTypeName]) VALUES (N'aa615c17-f4e6-4865-9c85-ca74a1da75f7', N'Remote')
+GO
+INSERT [dbo].[tbl_jobtype] ([JobTypeID], [JobTypeName]) VALUES (N'b41e991b-ca08-4be6-83a4-595b3d25f84d', N'Hybrid')
+GO
+INSERT [dbo].[tbl_jobtype] ([JobTypeID], [JobTypeName]) VALUES (N'bfbaac5a-17ee-429e-a2f5-8a1c3311b37b', N'on-site')
+GO
+USE [master]
+GO
+ALTER DATABASE [JobHunting] SET  READ_WRITE 
+GO
