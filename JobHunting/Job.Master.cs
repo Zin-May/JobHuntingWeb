@@ -11,6 +11,11 @@ namespace JobHunting
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["uinfo"] != null)
+            {
+                string user = Session["uinfo"].ToString();
+                loginstatus.InnerHtml = user;
+            }
 
         }
     }

@@ -12,9 +12,9 @@ namespace JobHunting.Controllers
 
         public List<tbl_user> GetAllUser()
         {
-            using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+            using (JobHuntingDBDataContext udb = new JobHuntingDBDataContext(con))
             {
-                return jdb.tbl_users.ToList();
+                return udb.tbl_users.ToList();
             }
         }
 
@@ -22,13 +22,13 @@ namespace JobHunting.Controllers
         {
             try
             {
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext udb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_users.Where(ur => ur.UserName == u.UserName).FirstOrDefault();
+                    var obj = udb.tbl_users.Where(ur => ur.UserName == u.UserName).FirstOrDefault();
                     if (obj == null)
                     {
-                        jdb.tbl_users.InsertOnSubmit(u);
-                        jdb.SubmitChanges();
+                        udb.tbl_users.InsertOnSubmit(u);
+                        udb.SubmitChanges();
                     }
                 }
                 return true;
@@ -43,9 +43,9 @@ namespace JobHunting.Controllers
         {
             try
             {
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext udb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_users.Where(ur => ur.UserID == u.UserID).FirstOrDefault();
+                    var obj = udb.tbl_users.Where(ur => ur.UserID == u.UserID).FirstOrDefault();
                     if (obj != null)
                     {
                         obj.UserName = u.UserName;
@@ -55,7 +55,7 @@ namespace JobHunting.Controllers
                         obj.IsAdmin = u.IsAdmin;
                         obj.CreatedDate = u.CreatedDate;
                         obj.UpdatedDate = u.UpdatedDate;
-                        jdb.SubmitChanges();
+                        udb.SubmitChanges();
                     }
                 }
                 return true;
@@ -70,13 +70,13 @@ namespace JobHunting.Controllers
         {
             try
             {
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext udb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_users.Where(ur => ur.UserID == u.UserID).FirstOrDefault();
+                    var obj = udb.tbl_users.Where(ur => ur.UserID == u.UserID).FirstOrDefault();
                     if (obj != null)
                     {
-                        jdb.tbl_users.DeleteOnSubmit(obj);
-                        jdb.SubmitChanges();
+                        udb.tbl_users.DeleteOnSubmit(obj);
+                        udb.SubmitChanges();
                     }
                 }
                 return true;
@@ -86,23 +86,35 @@ namespace JobHunting.Controllers
                 return false;
             }
         }
-        public bool GetByUserID(string id)
+        public tbl_user GetByUserID(string id)
         {
             try
             {
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext udb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_users.Where(ur => ur.UserID == id).FirstOrDefault();
-                    if (obj != null)
-                    {
-                        obj.ToString();
-                    }
+                    tbl_user user = udb.tbl_users.SingleOrDefault(ur => ur.UserID == id);
+                    return user;
                 }
-                return true;
             }
             catch (Exception ex)
             {
-                return false;
+                return null;
+            }
+        }
+
+        public tbl_user GetLogin(string username,string password)
+        {
+            using (JobHuntingDBDataContext udb = new JobHuntingDBDataContext(con))
+            {
+                tbl_user user = udb.tbl_users.FirstOrDefault(u => u.UserName == username && u.Password == password);
+                if(user == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    return user;
+                }
             }
         }
     }

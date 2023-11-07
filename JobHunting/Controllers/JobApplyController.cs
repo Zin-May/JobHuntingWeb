@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JobHunting.Models;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -11,9 +12,9 @@ namespace JobHunting.Controllers
         string con = ConfigurationManager.ConnectionStrings["JobHuntingConnectionString"].ConnectionString;
         public List<tbl_jobapply> GetAllJobApply()
         {
-            using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+            using (JobHuntingDBDataContext jadb = new JobHuntingDBDataContext(con))
             {
-                return jdb.tbl_jobapplies.ToList();
+                return jadb.tbl_jobapplies.ToList();
             }
         }
 
@@ -21,13 +22,13 @@ namespace JobHunting.Controllers
         {
             try
             {
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext jadb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_jobapplies.Where(jap => jap.JobApplyID == ja.JobApplyID).FirstOrDefault();
+                    var obj = jadb.tbl_jobapplies.Where(jap => jap.JobApplyID == ja.JobApplyID).FirstOrDefault();
                     if (obj == null)
                     {
-                        jdb.tbl_jobapplies.InsertOnSubmit(ja);
-                        jdb.SubmitChanges();
+                        jadb.tbl_jobapplies.InsertOnSubmit(ja);
+                        jadb.SubmitChanges();
                     }
                 }
                 return true;
@@ -42,15 +43,15 @@ namespace JobHunting.Controllers
         {
             try
             {
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext jadb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_jobapplies.Where(jap => jap.JobApplyID == ja.JobApplyID).FirstOrDefault();
+                    var obj = jadb.tbl_jobapplies.Where(jap => jap.JobApplyID == ja.JobApplyID).FirstOrDefault();
                     if (obj != null)
                     {
                         obj.UserID = ja.UserID;
                         obj.JobID = ja.JobID;
                         obj.CreatedDate = ja.CreatedDate;
-                        jdb.SubmitChanges();
+                        jadb.SubmitChanges();
                     }
                 }
                 return true;
@@ -65,13 +66,13 @@ namespace JobHunting.Controllers
         {
             try
             {
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext jadb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_jobapplies.Where(jap => jap.JobApplyID == ja.JobApplyID).FirstOrDefault();
+                    var obj = jadb.tbl_jobapplies.Where(jap => jap.JobApplyID == ja.JobApplyID).FirstOrDefault();
                     if (obj != null)
                     {
-                        jdb.tbl_jobapplies.DeleteOnSubmit(obj);
-                        jdb.SubmitChanges();
+                        jadb.tbl_jobapplies.DeleteOnSubmit(obj);
+                        jadb.SubmitChanges();
                     }
                 }
                 return true;
@@ -81,23 +82,19 @@ namespace JobHunting.Controllers
                 return false;
             }
         }
-        public bool GetByJobApplyID(string id)
+        public tbl_jobapply GetByJobApplyID(string id)
         {
             try
             {
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext jadb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_jobapplies.Where(jap => jap.JobApplyID == id).FirstOrDefault();
-                    if (obj != null)
-                    {
-                        obj.ToString();
-                    }
+                    tbl_jobapply japply = jadb.tbl_jobapplies.FirstOrDefault(jap => jap.JobApplyID == id);
+                    return japply;
                 }
-                return true;
             }
             catch (Exception ex)
             {
-                return false;
+                return null;
             }
         }
     }

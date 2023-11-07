@@ -12,9 +12,9 @@ namespace JobHunting.Controllers
 
         public List<tbl_workexperience> GetAllWorkExperience()
         {
-            using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+            using (JobHuntingDBDataContext wedb = new JobHuntingDBDataContext(con))
             {
-                return jdb.tbl_workexperiences.ToList();
+                return wedb.tbl_workexperiences.ToList();
             }
         }
 
@@ -22,13 +22,13 @@ namespace JobHunting.Controllers
         {
             try
             {
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext wedb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_workexperiences.Where(wex => wex.WorkExperienceID == w.WorkExperienceID).FirstOrDefault();
+                    var obj = wedb.tbl_workexperiences.Where(wex => wex.WorkExperienceID == w.WorkExperienceID).FirstOrDefault();
                     if (obj == null)
                     {
-                        jdb.tbl_workexperiences.InsertOnSubmit(w);
-                        jdb.SubmitChanges();
+                        wedb.tbl_workexperiences.InsertOnSubmit(w);
+                        wedb.SubmitChanges();
                     }
                 }
                 return true;
@@ -43,9 +43,9 @@ namespace JobHunting.Controllers
         {
             try
             {
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext wedb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_workexperiences.Where(wex => wex.WorkExperienceID == w.WorkExperienceID).FirstOrDefault();
+                    var obj = wedb.tbl_workexperiences.Where(wex => wex.WorkExperienceID == w.WorkExperienceID).FirstOrDefault();
                     if (obj != null)
                     {
                         obj.CompanyID = w.CompanyID;
@@ -54,7 +54,7 @@ namespace JobHunting.Controllers
                         obj.EndDate = w.EndDate;
                         obj.IsCurrentJob = w.IsCurrentJob;
                         obj.UserProfileID = w.UserProfileID;
-                        jdb.SubmitChanges();
+                        wedb.SubmitChanges();
                     }
                 }
                 return true;
@@ -69,13 +69,13 @@ namespace JobHunting.Controllers
         {
             try
             {
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext wedb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_workexperiences.Where(wex => wex.WorkExperienceID == w.WorkExperienceID).FirstOrDefault();
+                    var obj = wedb.tbl_workexperiences.Where(wex => wex.WorkExperienceID == w.WorkExperienceID).FirstOrDefault();
                     if (obj != null)
                     {
-                        jdb.tbl_workexperiences.DeleteOnSubmit(obj);
-                        jdb.SubmitChanges();
+                        wedb.tbl_workexperiences.DeleteOnSubmit(obj);
+                        wedb.SubmitChanges();
                     }
                 }
                 return true;
@@ -85,23 +85,19 @@ namespace JobHunting.Controllers
                 return false;
             }
         }
-        public bool GetByWorkExperienceID(string id)
+        public tbl_workexperience GetByWorkExperienceID(string id)
         {
             try
             {
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext wedb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_workexperiences.Where(wex => wex.WorkExperienceID == id).FirstOrDefault();
-                    if (obj != null)
-                    {
-                        obj.ToString();
-                    }
+                    tbl_workexperience wexp = wedb.tbl_workexperiences.FirstOrDefault(we => we.WorkExperienceID == id);
+                    return wexp;
                 }
-                return true;
             }
             catch (Exception ex)
             {
-                return false;
+                return null;
             }
         }
     }

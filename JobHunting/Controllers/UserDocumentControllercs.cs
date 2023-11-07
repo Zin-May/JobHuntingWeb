@@ -12,9 +12,9 @@ namespace JobHunting.Controllers
 
         public List<tbl_userdocument> GetAllUserDocument()
         {
-            using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+            using (JobHuntingDBDataContext uddb = new JobHuntingDBDataContext(con))
             {
-                return jdb.tbl_userdocuments.ToList();
+                return uddb.tbl_userdocuments.ToList();
             }
         }
 
@@ -22,13 +22,13 @@ namespace JobHunting.Controllers
         {
             try
             {
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext uddb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_userdocuments.Where(urd => urd.UserID == ud.UserID).FirstOrDefault();
+                    var obj = uddb.tbl_userdocuments.Where(urd => urd.UserID == ud.UserID).FirstOrDefault();
                     if (obj == null)
                     {
-                        jdb.tbl_userdocuments.InsertOnSubmit(ud);
-                        jdb.SubmitChanges();
+                        uddb.tbl_userdocuments.InsertOnSubmit(ud);
+                        uddb.SubmitChanges();
                     }
                 }
                 return true;
@@ -43,9 +43,9 @@ namespace JobHunting.Controllers
         {
             try
             {
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext uddb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_userdocuments.Where(urd => urd.UserDocumentID == ud.UserDocumentID).FirstOrDefault();
+                    var obj = uddb.tbl_userdocuments.Where(urd => urd.UserDocumentID == ud.UserDocumentID).FirstOrDefault();
                     if (obj != null)
                     {
                         obj.UserID = ud.UserID;
@@ -54,7 +54,7 @@ namespace JobHunting.Controllers
                         obj.DocumentURL = ud.DocumentURL;
                         obj.CreatedDate = ud.CreatedDate;
                         obj.Status = ud.Status;
-                        jdb.SubmitChanges();
+                        uddb.SubmitChanges();
                     }
                 }
                 return true;
@@ -69,13 +69,13 @@ namespace JobHunting.Controllers
         {
             try
             {
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext uddb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_userdocuments.Where(urd => urd.UserDocumentID == ud.UserDocumentID).FirstOrDefault();
+                    var obj = uddb.tbl_userdocuments.Where(urd => urd.UserDocumentID == ud.UserDocumentID).FirstOrDefault();
                     if (obj != null)
                     {
-                        jdb.tbl_userdocuments.DeleteOnSubmit(obj);
-                        jdb.SubmitChanges();
+                        uddb.tbl_userdocuments.DeleteOnSubmit(obj);
+                        uddb.SubmitChanges();
                     }
                 }
                 return true;
@@ -85,23 +85,19 @@ namespace JobHunting.Controllers
                 return false;
             }
         }
-        public bool GetByUserDocumentID(string id)
+        public tbl_userdocument GetByUserDocumentID(string id)
         {
             try
             {
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext uddb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_userdocuments.Where(urd => urd.UserDocumentID == id).FirstOrDefault();
-                    if (obj != null)
-                    {
-                        obj.ToString();
-                    }
+                    tbl_userdocument udocument = uddb.tbl_userdocuments.FirstOrDefault(ud => ud.UserDocumentID == id);
+                    return udocument;
                 }
-                return true;
             }
             catch (Exception ex)
             {
-                return false;
+                return null;
             }
         }
     }

@@ -12,9 +12,9 @@ namespace JobHunting.Controllers
 
         public List<tbl_userprofile> GetAllUserProfile()
         {
-            using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+            using (JobHuntingDBDataContext updb = new JobHuntingDBDataContext(con))
             {
-                return jdb.tbl_userprofiles.ToList();
+                return updb.tbl_userprofiles.ToList();
             }
         }
 
@@ -22,13 +22,13 @@ namespace JobHunting.Controllers
         {
             try
             {
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext updb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_userprofiles.Where(urp => urp.UserID == up.UserID).FirstOrDefault();
+                    var obj = updb.tbl_userprofiles.Where(urp => urp.UserID == up.UserID).FirstOrDefault();
                     if (obj == null)
                     {
-                        jdb.tbl_userprofiles.InsertOnSubmit(up);
-                        jdb.SubmitChanges();
+                        updb.tbl_userprofiles.InsertOnSubmit(up);
+                        updb.SubmitChanges();
                     }
                 }
                 return true;
@@ -43,9 +43,9 @@ namespace JobHunting.Controllers
         {
             try
             {
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext updb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_userprofiles.Where(urp => urp.UserProfileID == up.UserProfileID).FirstOrDefault();
+                    var obj = updb.tbl_userprofiles.Where(urp => urp.UserProfileID == up.UserProfileID).FirstOrDefault();
                     if (obj != null)
                     {
                         obj.UserImage = up.UserImage;
@@ -54,7 +54,7 @@ namespace JobHunting.Controllers
                         obj.Education = up.Education;
                         obj.SocialMediaLink = up.SocialMediaLink;
                         obj.UserID = up.UserID;
-                        jdb.SubmitChanges();
+                        updb.SubmitChanges();
                     }
                 }
                 return true;
@@ -69,13 +69,13 @@ namespace JobHunting.Controllers
         {
             try
             {
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext updb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_userprofiles.Where(urp => urp.UserProfileID == up.UserProfileID).FirstOrDefault();
+                    var obj = updb.tbl_userprofiles.Where(urp => urp.UserProfileID == up.UserProfileID).FirstOrDefault();
                     if (obj != null)
                     {
-                        jdb.tbl_userprofiles.DeleteOnSubmit(obj);
-                        jdb.SubmitChanges();
+                        updb.tbl_userprofiles.DeleteOnSubmit(obj);
+                        updb.SubmitChanges();
                     }
                 }
                 return true;
@@ -85,23 +85,19 @@ namespace JobHunting.Controllers
                 return false;
             }
         }
-        public bool GetByUserProfileID(string id)
+        public tbl_userprofile GetByUserProfileID(string id)
         {
             try
             {
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext updb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_userprofiles.Where(urp => urp.UserProfileID == id).FirstOrDefault();
-                    if (obj != null)
-                    {
-                       obj.ToString();
-                    }
+                    tbl_userprofile uprofile = updb.tbl_userprofiles.FirstOrDefault(up => up.UserProfileID == id);
+                    return uprofile;
                 }
-                return true;
             }
             catch (Exception ex)
             {
-                return false;
+                return null;
             }
         }
     }

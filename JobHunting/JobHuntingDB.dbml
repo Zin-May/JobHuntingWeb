@@ -1,18 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="JobHunting" Class="JobHuntingDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Table Name="dbo.tbl_category" Member="tbl_categories">
+  <Table Name="dbo.tbl_category" Member="tbl_category">
     <Type Name="tbl_category">
       <Column Name="CategoryID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="CategoryName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tbl_city" Member="tbl_cities">
+  <Table Name="dbo.tbl_workexperience" Member="tbl_workexperience">
+    <Type Name="tbl_workexperience">
+      <Column Name="WorkExperienceID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CompanyID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="Position" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IsCurrentJob" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="UserProfileID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_city" Member="tbl_city">
     <Type Name="tbl_city">
       <Column Name="CityID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="CityName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="CountryID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tbl_company" Member="tbl_companies">
+  <Table Name="dbo.tbl_company" Member="tbl_company">
     <Type Name="tbl_company">
       <Column Name="CompanyID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="CompanyName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
@@ -24,13 +35,13 @@
       <Column Name="EmployeeCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tbl_country" Member="tbl_countries">
+  <Table Name="dbo.tbl_country" Member="tbl_country">
     <Type Name="tbl_country">
       <Column Name="CountryID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="CountryName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tbl_job" Member="tbl_jobs">
+  <Table Name="dbo.tbl_job" Member="tbl_job">
     <Type Name="tbl_job">
       <Column Name="JobID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="CompanyID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
@@ -47,7 +58,7 @@
       <Column Name="Status" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tbl_jobapply" Member="tbl_jobapplies">
+  <Table Name="dbo.tbl_jobapply" Member="tbl_jobapply">
     <Type Name="tbl_jobapply">
       <Column Name="JobApplyID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="UserID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
@@ -55,39 +66,39 @@
       <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tbl_joblocation" Member="tbl_joblocations">
+  <Table Name="dbo.tbl_joblocation" Member="tbl_joblocation">
     <Type Name="tbl_joblocation">
       <Column Name="JobLocationID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="JobStreetAddress" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
       <Column Name="CityID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tbl_jobposition" Member="tbl_jobpositions">
+  <Table Name="dbo.tbl_jobposition" Member="tbl_jobposition">
     <Type Name="tbl_jobposition">
       <Column Name="JobPositionID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="JobPositionName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tbl_jobrole" Member="tbl_jobroles">
+  <Table Name="dbo.tbl_jobrole" Member="tbl_jobrole">
     <Type Name="tbl_jobrole">
       <Column Name="JobRoleID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="JobRoleName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tbl_jobtype" Member="tbl_jobtypes">
+  <Table Name="dbo.tbl_jobtype" Member="tbl_jobtype">
     <Type Name="tbl_jobtype">
       <Column Name="JobTypeID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="JobTypeName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tbl_skill" Member="tbl_skills">
+  <Table Name="dbo.tbl_skill" Member="tbl_skill">
     <Type Name="tbl_skill">
       <Column Name="SkillID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
       <Column Name="SkillName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="UserProfileID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tbl_user" Member="tbl_users">
+  <Table Name="dbo.tbl_user" Member="tbl_user">
     <Type Name="tbl_user">
       <Column Name="UserID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="UserName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
@@ -99,7 +110,7 @@
       <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tbl_userdocument" Member="tbl_userdocuments">
+  <Table Name="dbo.tbl_userdocument" Member="tbl_userdocument">
     <Type Name="tbl_userdocument">
       <Column Name="UserDocumentID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
       <Column Name="UserID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
@@ -110,7 +121,7 @@
       <Column Name="Status" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tbl_userprofile" Member="tbl_userprofiles">
+  <Table Name="dbo.tbl_userprofile" Member="tbl_userprofile">
     <Type Name="tbl_userprofile">
       <Column Name="UserProfileID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="UserImage" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
@@ -119,17 +130,6 @@
       <Column Name="Education" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="SocialMediaLink" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="UserID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.tbl_workexperience" Member="tbl_workexperiences">
-    <Type Name="tbl_workexperience">
-      <Column Name="WorkExperienceID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="CompanyID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
-      <Column Name="Position" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="StartDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="EndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="IsCurrentJob" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="UserProfileID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

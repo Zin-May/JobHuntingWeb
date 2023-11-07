@@ -2947,13 +2947,51 @@
     <Content Include="jobsingle.aspx" />
     <Content Include="lib\bootstrap\css\bootstrap.min.css" />
     <Content Include="lib\bootstrap\js\bootstrap.min.js" />
+    <Content Include="lib\images\jobimg.jpg" />
     <Content Include="lib\jquery\jquery.js" />
     <Content Include="lib\jquery\jquery.min.js" />
     <Content Include="lib\jquery\jquery.slim.js" />
     <Content Include="lib\jquery\jquery.slim.min.js" />
     <Content Include="login.aspx" />
+    <Content Include="Site3\Login\images\4977163.png" />
+    <Content Include="Site3\Login\images\8524294.png" />
+    <Content Include="Site3\Login\images\pexels-photo-1372971-Recovered.jpg" />
+    <Content Include="Site3\Login\section.html" />
+    <Content Include="Profile.aspx" />
     <Content Include="ScriptDB.txt" />
     <Content Include="signup.aspx" />
+    <Content Include="Site3\About.css" />
+    <Content Include="Site3\About.html" />
+    <Content Include="Site3\Blog-Template.css" />
+    <Content Include="Site3\blog\blog.html" />
+    <Content Include="Site3\blog\post-1.html" />
+    <Content Include="Site3\blog\post-2.html" />
+    <Content Include="Site3\blog\post-3.html" />
+    <Content Include="Site3\blog\post-4.html" />
+    <Content Include="Site3\blog\post-5.html" />
+    <Content Include="Site3\blog\post.html" />
+    <Content Include="Site3\Contact.css" />
+    <Content Include="Site3\Contact.html" />
+    <Content Include="Site3\Home.css" />
+    <Content Include="Site3\Home.html" />
+    <Content Include="Site3\images\0fd3416c.jpeg" />
+    <Content Include="Site3\images\13808841.jpg" />
+    <Content Include="Site3\images\68f64b9d.jpeg" />
+    <Content Include="Site3\images\8ad73f3c.jpeg" />
+    <Content Include="Site3\images\default-logo.png" />
+    <Content Include="Site3\images\fgfgfgf.jpg" />
+    <Content Include="Site3\images\fgfgfgfg.jpg" />
+    <Content Include="Site3\index.html" />
+    <Content Include="Site3\intlTelInput\intlTelInput.css" />
+    <Content Include="Site3\intlTelInput\intlTelInput.min.js" />
+    <Content Include="Site3\intlTelInput\utils.js" />
+    <Content Include="Site3\jquery.js" />
+    <Content Include="Site3\nicepage.css" />
+    <Content Include="Site3\nicepage.js" />
+    <Content Include="Site3\Post-Template.css" />
+    <Content Include="Site3\LoginSite\images\2601014749-0.png" />
+    <Content Include="Site3\LoginSite\images\thumbnails\2601014749-0.png" />
+    <Content Include="Site3\LoginSite\Login-Template.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -3104,6 +3142,13 @@
     <Compile Include="Models\UserDocument.cs" />
     <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Models\WorkExperience.cs" />
+    <Compile Include="Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="signup.aspx.cs">
       <DependentUpon>signup.aspx</DependentUpon>
@@ -3625,7 +3670,12 @@
     <None Include="JobHuntingDB.dbml.layout">
       <DependentUpon>JobHuntingDB.dbml</DependentUpon>
     </None>
+    <Content Include="Site3\Login\section.json" />
     <None Include="packages.config" />
+    <Content Include="Site3\LoginSite\images.json" />
+    <Content Include="Site3\LoginSite\pages.json" />
+    <Content Include="Site3\LoginSite\publish.json" />
+    <Content Include="Site3\LoginSite\site.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -3637,6 +3687,8 @@
     <Folder Include="Admin\adminox\plugins\jquery.filer\uploads\" />
     <Folder Include="Admin\adminox\plugins\jstree\themes\default\" />
     <Folder Include="Models\ViewModels\" />
+    <Folder Include="Site3\LoginSite\files\" />
+    <Folder Include="Site3\LoginSite\images\originals\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

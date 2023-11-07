@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Web;
+using System.Xml.Linq;
 
 namespace JobHunting.Controllers
 {
@@ -13,9 +14,9 @@ namespace JobHunting.Controllers
 
         public List<tbl_company> GetAllCompany()
         {
-            using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+            using (JobHuntingDBDataContext codb = new JobHuntingDBDataContext(con))
             {
-                return jdb.tbl_companies.ToList();
+                return codb.tbl_companies.ToList();
             }
         }
 
@@ -23,13 +24,13 @@ namespace JobHunting.Controllers
         {
             try
             {
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext codb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_companies.Where(com => com.CompanyName==co.CompanyName).FirstOrDefault();
+                    var obj = codb.tbl_companies.Where(com => com.CompanyName==co.CompanyName).FirstOrDefault();
                     if (obj == null)
                     {
-                        jdb.tbl_companies.InsertOnSubmit(co);
-                        jdb.SubmitChanges();
+                        codb.tbl_companies.InsertOnSubmit(co);
+                        codb.SubmitChanges();
                     }
                 }
                 return true;
@@ -44,14 +45,14 @@ namespace JobHunting.Controllers
         {
             try
             {
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext codb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_companies.Where(com => com.CompanyID == co.CompanyID).FirstOrDefault();
+                    var obj = codb.tbl_companies.Where(com => com.CompanyID == co.CompanyID).FirstOrDefault();
                     if (obj != null)
                     {
                         obj.CompanyName = co.CompanyName;
                         obj.CompanyImage = co.CompanyImage;
-                        jdb.SubmitChanges();
+                        codb.SubmitChanges();
                     }
                 }
                 return true;
@@ -66,13 +67,13 @@ namespace JobHunting.Controllers
         {
             try
             {
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext codb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_companies.Where(com => com.CompanyID == co.CompanyID).FirstOrDefault();
+                    var obj = codb.tbl_companies.Where(com => com.CompanyID == co.CompanyID).FirstOrDefault();
                     if (obj != null)
                     {
-                        jdb.tbl_companies.DeleteOnSubmit(obj);
-                        jdb.SubmitChanges();
+                        codb.tbl_companies.DeleteOnSubmit(obj);
+                        codb.SubmitChanges();
                     }
                 }
                 return true;
@@ -82,23 +83,19 @@ namespace JobHunting.Controllers
                 return false;
             }
         }
-        public bool GetByCompanyID(string id)
+        public tbl_company GetByCompanyID(string id)
         {
             try
             {
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext codb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_companies.Where(com => com.CompanyID == id).FirstOrDefault();
-                    if (obj != null)
-                    {
-                        obj.ToString();
-                    }
+                    tbl_company company = codb.tbl_companies.FirstOrDefault(com => com.CompanyID == id);
+                    return company;
                 }
-                return true;
             }
             catch (Exception ex)
             {
-                return false;
+                return null;
             }
         }
     }

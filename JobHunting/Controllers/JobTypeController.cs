@@ -13,9 +13,9 @@ namespace JobHunting.Controllers
 
         public List<tbl_jobtype> GetAllJobType()
         {
-            using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+            using (JobHuntingDBDataContext jtdb = new JobHuntingDBDataContext(con))
             {
-                return jdb.tbl_jobtypes.ToList();
+                return jtdb.tbl_jobtypes.ToList();
             }
         }
 
@@ -23,13 +23,13 @@ namespace JobHunting.Controllers
         {
             try
             {
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext jtdb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_jobtypes.Where(jty => jty.JobTypeName == jt.JobTypeName).FirstOrDefault();
+                    var obj = jtdb.tbl_jobtypes.Where(jty => jty.JobTypeName == jt.JobTypeName).FirstOrDefault();
                     if (obj == null)
                     {
-                        jdb.tbl_jobtypes.InsertOnSubmit(jt);
-                        jdb.SubmitChanges();
+                        jtdb.tbl_jobtypes.InsertOnSubmit(jt);
+                        jtdb.SubmitChanges();
                     }
                 }
                 return true;
@@ -44,13 +44,13 @@ namespace JobHunting.Controllers
         {
             try
             {
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext jtdb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_jobtypes.Where(jty => jty.JobTypeID == jt.JobTypeID).FirstOrDefault();
+                    var obj = jtdb.tbl_jobtypes.Where(jty => jty.JobTypeID == jt.JobTypeID).FirstOrDefault();
                     if (obj != null)
                     {
                         obj.JobTypeName = jt.JobTypeName;
-                        jdb.SubmitChanges();
+                        jtdb.SubmitChanges();
                     }
                 }
                 return true;
@@ -65,13 +65,13 @@ namespace JobHunting.Controllers
         {
             try
             {
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext jtdb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_jobtypes.Where(jty => jty.JobTypeID == jt.JobTypeID).FirstOrDefault();
+                    var obj = jtdb.tbl_jobtypes.Where(jty => jty.JobTypeID == jt.JobTypeID).FirstOrDefault();
                     if (obj != null)
                     {
-                        jdb.tbl_jobtypes.DeleteOnSubmit(obj);
-                        jdb.SubmitChanges();
+                        jtdb.tbl_jobtypes.DeleteOnSubmit(obj);
+                        jtdb.SubmitChanges();
                     }
                 }
                 return true;
@@ -81,23 +81,19 @@ namespace JobHunting.Controllers
                 return false;
             }
         }
-        public bool GetByJobTypeID(string id)
+        public tbl_jobtype GetByJobTypeID(string id)
         {
             try
             {
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext jtdb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_jobtypes.Where(jty => jty.JobTypeID == id).FirstOrDefault();
-                    if (obj != null)
-                    {
-                        obj.ToString();
-                    }
+                    tbl_jobtype jtype = jtdb.tbl_jobtypes.FirstOrDefault(jt => jt.JobTypeID == id);
+                    return jtype;
                 }
-                return true;
             }
             catch (Exception ex)
             {
-                return false;
+                return null;
             }
         }
     }

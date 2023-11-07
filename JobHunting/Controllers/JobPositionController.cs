@@ -12,9 +12,9 @@ namespace JobHunting.Controllers
 
         public List<tbl_jobposition> GetAllJobPosition()
         {
-            using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+            using (JobHuntingDBDataContext jpdb = new JobHuntingDBDataContext(con))
             {
-                return jdb.tbl_jobpositions.ToList();
+                return jpdb.tbl_jobpositions.ToList();
             }
         }
 
@@ -23,13 +23,13 @@ namespace JobHunting.Controllers
             try
             {
 
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext jpdb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_jobpositions.Where(jpo => jpo.JobPositionName == jp.JobPositionName).FirstOrDefault();
+                    var obj = jpdb.tbl_jobpositions.Where(jpo => jpo.JobPositionName == jp.JobPositionName).FirstOrDefault();
                     if (obj == null)
                     {
-                        jdb.tbl_jobpositions.InsertOnSubmit(jp);
-                        jdb.SubmitChanges();
+                        jpdb.tbl_jobpositions.InsertOnSubmit(jp);
+                        jpdb.SubmitChanges();
                     }
                 }
                 return true;
@@ -44,13 +44,13 @@ namespace JobHunting.Controllers
         {
             try
             {
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext jpdb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_jobpositions.Where(jpo => jpo.JobPositionID == jp.JobPositionID).FirstOrDefault();
+                    var obj = jpdb.tbl_jobpositions.Where(jpo => jpo.JobPositionID == jp.JobPositionID).FirstOrDefault();
                     if (obj != null)
                     {
                         obj.JobPositionName = jp.JobPositionName;
-                        jdb.SubmitChanges();
+                        jpdb.SubmitChanges();
                     }
                 }
                 return true;
@@ -65,13 +65,13 @@ namespace JobHunting.Controllers
         {
             try
             {
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext jpdb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_jobpositions.Where(jpo => jpo.JobPositionID == jp.JobPositionID).FirstOrDefault();
+                    var obj = jpdb.tbl_jobpositions.Where(jpo => jpo.JobPositionID == jp.JobPositionID).FirstOrDefault();
                     if (obj != null)
                     {
-                        jdb.tbl_jobpositions.DeleteOnSubmit(obj);
-                        jdb.SubmitChanges();
+                        jpdb.tbl_jobpositions.DeleteOnSubmit(obj);
+                        jpdb.SubmitChanges();
                     }
                 }
                 return true;
@@ -82,24 +82,20 @@ namespace JobHunting.Controllers
             }
         }
 
-        public bool GetByJobPositionID(string id)
+        public tbl_jobposition GetByJobPositionID(string id)
         {
             try
             {
 
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext jpdb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_jobpositions.Where(jpo => jpo.JobPositionID == id).FirstOrDefault();
-                    if (obj != null)
-                    {
-                        obj.ToString();
-                    }
+                    tbl_jobposition jposition = jpdb.tbl_jobpositions.FirstOrDefault(jp => jp.JobPositionID == id);
+                    return jposition;
                 }
-                return true;
             }
             catch (Exception ex)
             {
-                return false;
+                return null;
             }
         }
     }

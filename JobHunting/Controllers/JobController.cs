@@ -91,23 +91,20 @@ namespace JobHunting.Controllers
                 return false;
             }
         }
-        public bool GetByJobID(string id)
+        public tbl_job GetByJobID(string id)
         {
             try
             {
                 using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_jobs.Where(job => job.JobID == id).FirstOrDefault();
-                    if (obj != null)
-                    {
-                        obj.ToString();
-                    }
+                    tbl_job job = jdb.tbl_jobs.FirstOrDefault(jo => jo.JobID == id);
+                    return job;
+
                 }
-                return true;
             }
             catch (Exception ex)
             {
-                return false;
+                return null;
             }
         }
     }

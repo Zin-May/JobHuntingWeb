@@ -12,9 +12,9 @@ namespace JobHunting.Controllers
 
         public List<tbl_skill> GetAllSkill()
         {
-            using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+            using (JobHuntingDBDataContext sdb = new JobHuntingDBDataContext(con))
             {
-                return jdb.tbl_skills.ToList();
+                return sdb.tbl_skills.ToList();
             }
         }
 
@@ -22,13 +22,13 @@ namespace JobHunting.Controllers
         {
             try
             {
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext sdb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_skills.Where(sk => sk.SkillName == s.SkillName).FirstOrDefault();
+                    var obj = sdb.tbl_skills.Where(sk => sk.SkillName == s.SkillName).FirstOrDefault();
                     if (obj == null)
                     {
-                        jdb.tbl_skills.InsertOnSubmit(s);
-                        jdb.SubmitChanges();
+                        sdb.tbl_skills.InsertOnSubmit(s);
+                        sdb.SubmitChanges();
                     }
                 }
                 return true;
@@ -43,14 +43,14 @@ namespace JobHunting.Controllers
         {
             try
             {
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext sdb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_skills.Where(sk => sk.SkillID == s.SkillID).FirstOrDefault();
+                    var obj = sdb.tbl_skills.Where(sk => sk.SkillID == s.SkillID).FirstOrDefault();
                     if (obj != null)
                     {
                         obj.SkillName = s.SkillName;
                         obj.UserProfileID = s.UserProfileID;
-                        jdb.SubmitChanges();
+                        sdb.SubmitChanges();
                     }
                 }
                 return true;
@@ -65,13 +65,13 @@ namespace JobHunting.Controllers
         {
             try
             {
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext sdb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_skills.Where(sk => sk.SkillID == s.SkillID).FirstOrDefault();
+                    var obj = sdb.tbl_skills.Where(sk => sk.SkillID == s.SkillID).FirstOrDefault();
                     if (obj != null)
                     {
-                        jdb.tbl_skills.DeleteOnSubmit(obj);
-                        jdb.SubmitChanges();
+                        sdb.tbl_skills.DeleteOnSubmit(obj);
+                        sdb.SubmitChanges();
                     }
                 }
                 return true;
@@ -81,23 +81,19 @@ namespace JobHunting.Controllers
                 return false;
             }
         }
-        public bool GetBySkillID(string id)
+        public tbl_skill GetBySkillID(string id)
         {
             try
             {
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext sdb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_skills.Where(sk => sk.SkillID == id).FirstOrDefault();
-                    if (obj != null)
-                    {
-                        obj.ToString();
-                    }
+                    tbl_skill skill = sdb.tbl_skills.FirstOrDefault(sk => sk.SkillID == id);
+                    return skill;
                 }
-                return true;
             }
             catch (Exception ex)
             {
-                return false;
+                return null;
             }
         }
     }

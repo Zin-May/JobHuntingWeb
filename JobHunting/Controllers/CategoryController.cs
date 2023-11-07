@@ -14,9 +14,9 @@ namespace JobHunting.Controllers
 
         public List<tbl_category> GetAllCategory()
         {
-            using(JobHuntingDBDataContext jdb=new JobHuntingDBDataContext(con))
+            using(JobHuntingDBDataContext cdb=new JobHuntingDBDataContext(con))
             {
-                return jdb.tbl_categories.ToList();
+                return cdb.tbl_categories.ToList();
             }
         }
 
@@ -25,13 +25,13 @@ namespace JobHunting.Controllers
             try
             {
 
-                using (JobHuntingDBDataContext jdb=new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext cdb=new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_categories.Where(cat => cat.CategoryName == c.CategoryName).FirstOrDefault();
+                    var obj = cdb.tbl_categories.Where(cat => cat.CategoryName == c.CategoryName).FirstOrDefault();
                     if (obj == null)
                     {
-                        jdb.tbl_categories.InsertOnSubmit(c);
-                        jdb.SubmitChanges();
+                        cdb.tbl_categories.InsertOnSubmit(c);
+                        cdb.SubmitChanges();
                     }
                 }
                 return true;
@@ -46,13 +46,13 @@ namespace JobHunting.Controllers
         {
             try
             {
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext cdb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_categories.Where(cat => cat.CategoryID == c.CategoryID).FirstOrDefault();
+                    var obj = cdb.tbl_categories.Where(cat => cat.CategoryID == c.CategoryID).FirstOrDefault();
                     if (obj != null)
                     {
                         obj.CategoryName = c.CategoryName;
-                        jdb.SubmitChanges();
+                        cdb.SubmitChanges();
                     }
                 }
                 return true;
@@ -67,13 +67,13 @@ namespace JobHunting.Controllers
         {
             try
             {
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext cdb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_categories.Where(cat => cat.CategoryID == c.CategoryID).FirstOrDefault();
+                    var obj = cdb.tbl_categories.Where(cat => cat.CategoryID == c.CategoryID).FirstOrDefault();
                     if (obj != null)
                     {
-                        jdb.tbl_categories.DeleteOnSubmit(obj);
-                        jdb.SubmitChanges();
+                        cdb.tbl_categories.DeleteOnSubmit(obj);
+                        cdb.SubmitChanges();
                     }
                 }
                 return true;
@@ -84,24 +84,20 @@ namespace JobHunting.Controllers
             }
         }
 
-        public bool GetByCategoryID(string id)
+        public tbl_category GetByCategoryID(string id)
         {
             try
             {
 
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext cdb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_categories.Where(cat => cat.CategoryID == id).FirstOrDefault();
-                    if (obj != null)
-                    {
-                        obj.ToString();
-                    }
+                    tbl_category cat = cdb.tbl_categories.FirstOrDefault(c => c.CategoryID == id);
+                    return cat;
                 }
-                return true;
             }
             catch (Exception ex)
             {
-                return false;
+                return null;
             }
         }
     }

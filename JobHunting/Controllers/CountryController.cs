@@ -82,24 +82,21 @@ namespace JobHunting.Controllers
             }
         }
 
-        public bool GetByCountryID(string id)
+        public tbl_country GetByCountryID(string id)
         {
             try
             {
 
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext coudb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_countries.Where(co => co.CountryID == id).FirstOrDefault();
-                    if (obj != null)
-                    {
-                        obj.ToString();
-                    }
+                    tbl_country country = coudb.tbl_countries.FirstOrDefault(co => co.CountryID == id);
+                    return country;
+
                 }
-                return true;
             }
             catch (Exception ex)
             {
-                return false;
+                return null;
             }
         }
     }

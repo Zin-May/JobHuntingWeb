@@ -12,9 +12,9 @@ namespace JobHunting.Controllers
 
         public List<tbl_city> GetAllCity()
         {
-            using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+            using (JobHuntingDBDataContext cidb = new JobHuntingDBDataContext(con))
             {
-                return jdb.tbl_cities.ToList();
+                return cidb.tbl_cities.ToList();
             }
         }
 
@@ -23,13 +23,13 @@ namespace JobHunting.Controllers
             try
             {
 
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext cidb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_cities.Where(ci => ci.CityName == c.CityName).FirstOrDefault();
+                    var obj = cidb.tbl_cities.Where(ci => ci.CityName == c.CityName).FirstOrDefault();
                     if (obj == null)
                     {
-                        jdb.tbl_cities.InsertOnSubmit(c);
-                        jdb.SubmitChanges();
+                        cidb.tbl_cities.InsertOnSubmit(c);
+                        cidb.SubmitChanges();
                     }
                 }
                 return true;
@@ -44,14 +44,14 @@ namespace JobHunting.Controllers
         {
             try
             {
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext cidb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_cities.Where(ci => ci.CityID == c.CityID).FirstOrDefault();
+                    var obj = cidb.tbl_cities.Where(ci => ci.CityID == c.CityID).FirstOrDefault();
                     if (obj != null)
                     {
                         obj.CityName = c.CityName;
                         obj.CountryID = c.CountryID;
-                        jdb.SubmitChanges();
+                        cidb.SubmitChanges();
                     }
                 }
                 return true;
@@ -66,13 +66,13 @@ namespace JobHunting.Controllers
         {
             try
             {
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext cidb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_cities.Where(ci => ci.CityID == c.CityID).FirstOrDefault();
+                    var obj = cidb.tbl_cities.Where(ci => ci.CityID == c.CityID).FirstOrDefault();
                     if (obj != null)
                     {
-                        jdb.tbl_cities.DeleteOnSubmit(obj);
-                        jdb.SubmitChanges();
+                        cidb.tbl_cities.DeleteOnSubmit(obj);
+                        cidb.SubmitChanges();
                     }
                 }
                 return true;
@@ -83,24 +83,20 @@ namespace JobHunting.Controllers
             }
         }
 
-        public bool GetByCityID(string id)
+        public tbl_city GetByCityID(string id)
         {
             try
             {
 
-                using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext cidb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_cities.Where(ci => ci.CityID == id).FirstOrDefault();
-                    if (obj != null)
-                    {
-                        obj.ToString();
-                    }
+                    tbl_city city = cidb.tbl_cities.FirstOrDefault(ci => ci.CityID == id);
+                    return city;
                 }
-                return true;
             }
             catch (Exception ex)
             {
-                return false;
+                return null;
             }
         }
     }

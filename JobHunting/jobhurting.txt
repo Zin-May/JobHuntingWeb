@@ -1,0 +1,162 @@
+Job hunting
+-----------
+user jobs
+registration
+login
+user information
+experience
+company name
+cv form
+job show
+company detail
+inform
+free data
+
+4 parts
+-------
+Admin
+Job Seeker
+Company
+Customer Service
+
+
+Database
+---------
+1.User
+2.UserProfile
+3.WorkExperience
+4.Skill
+5.Company
+6.Job
+7.JobRole
+8.JobType
+9.Category
+10.JobApply
+11.UserDocument
+12.JobPosition
+13.JobLocation
+14.Country
+15.City
+
+
+1.User(user registration)
+-------------------------
+UserID
+UserName
+Email
+Password
+Phone
+IsAdmin
+CreatedDate
+UpdatedDate
+
+2.UserProfile
+------------
+UserProfileID
+UserImage
+DateOfBirth
+Address
+Education
+SocialMediaLink
+UserID
+
+3.WorkExperience
+--------------
+WorkExperienceID
+CompanyID
+Position
+StartDate
+EndDate (Allow Null)
+IsCurrentJob
+UserProfileID
+
+4.Skill
+------
+SkillID
+SkillName
+UserProfileID
+
+5.Company
+----------
+CompanyID
+CompanyName
+CompanyImage
+Description
+Address
+Phone
+Email
+EmployeeCount
+
+6.Job
+------
+JobID
+CompanyID
+JobRoleID
+JobTypeID
+CategoryID
+JobLocationID *
+Allowence
+Salary
+JobDescription
+JobResponsibility
+CreatedDate
+UpdatedDate
+Status *
+
+7.JobRole(Full/Part/Contract)
+-----------------------------
+JobRoleID
+JobRoleName
+
+8.JobType(on-site/remote/hybrid)
+------------------------------
+JobTypeID
+JobTypeName
+
+9.Category
+----------
+CategoryID
+CategoryName
+
+10.JobApply
+-----------
+JobApplyID
+UserID
+JobID
+CreatedDate
+
+11.UserDocument
+---------------
+UserDocumentID
+UserID
+DocumentName
+DocumentType
+DocumentURL
+CreatedDate
+Status
+
+12.JobPosition
+--------------
+JobPositionID
+JobPositionName
+
+13.JobLocation
+--------------
+JobLocationID
+JobStreetAddress
+CityID
+
+14.Country
+----------
+CountryID
+CountryName
+
+15.City
+-------
+CityID
+CityName
+CountryID
+
+
+
+
