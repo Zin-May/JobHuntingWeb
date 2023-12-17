@@ -1,4 +1,5 @@
 ﻿using JobHunting.Controllers;
+using JobHunting.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,14 +15,23 @@ namespace JobHunting
         {
         }
 
-        protected void btnLogin_Click(object sender, EventArgs e)
+        protected void Button1_Click(object sender, EventArgs e)
         {
             UserController user_controller = new UserController();
             var obj = user_controller.GetLogin(txtUserName.Value, txtPassword.Value);
             if (obj != null)
             {
                 Session["uinfo"] = obj.UserName;
-                Response.Redirect("index.aspx");
+                Session["uinfoid"] = obj.UserID;
+                if (obj.IsAdmin == true)
+                {
+
+                    Response.Redirect("Admin/indexadmin.aspx");
+                }
+                else
+                {
+                    Response.Redirect("index.aspx");
+                }
             }
             else
             {

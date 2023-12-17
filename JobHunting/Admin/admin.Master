@@ -12,17 +12,49 @@
         <link rel="shortcut icon" href="adminox/default/assets/images/favicon.ico">
 
         <!-- App css -->
-        <link href="adminox/default/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="adminox/default/assets/css/icons.css" rel="stylesheet" type="text/css" />
-        <link href="adminox/default/assets/css/metismenu.min.css" rel="stylesheet" type="text/css" />
-        <link href="adminox/default/assets/css/style.css" rel="stylesheet" type="text/css" />
+        <link href="adminox/default/assets/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="adminox/default/assets/css/icons.css" rel="stylesheet" />
+        <link href="adminox/default/assets/css/metismenu.min.css" rel="stylesheet" />
+        <link href="adminox/default/assets/css/style.css" rel="stylesheet" />
 
         <script src="adminox/default/assets/js/modernizr.min.js"></script>
+
+        <!-- DataTables -->
+    <link href="../lib/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+        <!-- Responsive datatable examples -->
+    <link href="adminox/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" />
+
+        <!-- Sweet Alert -->
+    <link href="../lib/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+      
+    <!-- Message alert -->
+    <style type="text/css">  
+        
+        .fc{
+            color:white;
+        }
+
+        .messagealert {  
+            width: 100%;  
+            position: absolute;  
+            top: 40%;  
+            z-index: 999;  
+            padding: 0;  
+            font-size: 15px;  
+            text-align: center;  
+        }  
+         .bs,.bu{
+     display:block;
+ }
+ .bs.hid,.bu.hid{
+     display:none;
+ }
+    </style>  
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<body>
+<body runat="server">
     <!-- Begin page -->
         <div id="wrapper">
 
@@ -32,12 +64,12 @@
                 <!-- LOGO -->
                 <div class="topbar-left">
                     <a href="indexadmin.aspx" class="logo">
-                                <span>
-                                    <img src="adminox/default/assets/images/logo.png" alt="" height="25">
-                                </span>
-                        <i>
-                            <img src="adminox/default/assets/images/logo_sm.png" alt="" height="28">
-                        </i>
+                        <div>
+                            <span>
+                                <img src="../Site3/Login/images/8524294.png" alt="" height="25" /><b class="fc" >MOMIJI</b><img src="../Site3/Login/images/8524294.png" alt="" height="25" />
+                                <i><h4><b>MOMIJI</b></h4></i>
+                            </span>
+                        </div>
                     </a>
                 </div>
 
@@ -90,15 +122,15 @@
                             <div class="dropdown-menu dropdown-menu-right profile-dropdown " aria-labelledby="Preview">
                                 <!-- item-->
                                 <div class="dropdown-item noti-title">
-                                    <h5 class="text-overflow"><small>Welcome ! John</small> </h5>
+                                    <h5 class="text-overflow"><small><asp:Label ID="lblAdminName" runat="server"></asp:Label></small></h5>
                                 </div>
 
                                 <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <a href="ProfileAdminPage.aspx" class="dropdown-item notify-item">
                                     <i class="zmdi zmdi-account-circle"></i> <span>Profile</span>
                                 </a>
 
-                                <!-- item-->
+                               <%-- <!-- item-->
                                 <a href="javascript:void(0);" class="dropdown-item notify-item">
                                     <i class="zmdi zmdi-settings"></i> <span>Settings</span>
                                 </a>
@@ -106,10 +138,10 @@
                                 <!-- item-->
                                 <a href="javascript:void(0);" class="dropdown-item notify-item">
                                     <i class="zmdi zmdi-lock-open"></i> <span>Lock Screen</span>
-                                </a>
+                                </a>--%>
 
                                 <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <a href="../logout.aspx" class="dropdown-item notify-item">
                                     <i class="zmdi zmdi-power"></i> <span>Logout</span>
                                 </a>
 
@@ -146,27 +178,45 @@
                     <div id="sidebar-menu">
                         <!-- Left Menu Start -->
                         <ul class="metismenu" id="side-menu">
-                            <li class="menu-title">Navigation</li>
+                            <li class="menu-title">Admin Activity</li>
                             <li>
                                 <a href="javascript: void(0);">
                                     <i class="fi-air-play"></i><span class="badge badge-success pull-right">2</span> <span> Dashboard</span>
                                 </a>
                                 <ul class="nav-second-level" aria-expanded=false>
                                     <li><a href="indexadmin.aspx">Dashboard </a></li>
+                                    <li><a href="Category.aspx">Category</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="javascript: void(0);"><i class="fi-target"></i> <span> Admin Activity </span> <span class="menu-arrow"></span></a>
+                                <a href="javascript: void(0);"><i class="fi-target"></i> <span> Job </span> <span class="menu-arrow"></span></a>
                                 <ul class="nav-second-level" aria-expanded="false">
-                                    <li><a href="Category.aspx">Category</a></li>
+                                    <li><a href="Job.aspx">Job</a></li>
                                     <li><a href="JobType.aspx">JobType</a></li>
-                                    <li><a href="JobRole.aspx">JobRole</a></li>
+                                    <li><a href="JobRole.aspx">JobRole</a></li> 
+                                    <li><a href="JobPosition.aspx">Job Position</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript: void(0);"><i class="fa fa-building"></i> <span> Company </span> <span class="menu-arrow"></span></a>
+                                <ul class="nav-second-level" aria-expanded="false">
                                     <li><a href="Company.aspx">Company</a></li>
                                 </ul>
                             </li>
-
-                            <li class="menu-title">More</li>
-
+                            <li>
+                                <a href="javascript: void(0);"><i class="mdi mdi-map"></i> <span> Address </span> <span class="menu-arrow"></span></a>
+                                    <ul class="nav-second-level" aria-expanded="false">
+                                        <li><a href="Country.aspx">Country</a></li>                                   
+                                        <li><a href="City.aspx">City</a></li>
+                                        <li><a href="JobLocation.aspx">Job Location</a></li>
+                                    </ul>
+                            </li>
+                            <li>
+                                <a href="javascript: void(0);"><i class="mdi mdi-map"></i> <span> Authentication </span> <span class="menu-arrow"></span></a>
+                                    <ul class="nav-second-level" aria-expanded="false">
+                                        <li><a href="SignUpAdmin.aspx">SignUp</a></li> 
+                                    </ul>
+                            </li>
                         </ul>
 
                     </div>
@@ -190,7 +240,7 @@
                 </asp:ContentPlaceHolder>
 
                 <footer class="footer text-right">
-                    Mojimi - Job Hunting
+                    MOMIJI - Job Hunting
                 </footer>
 
             </div>
@@ -204,7 +254,8 @@
         <!-- END wrapper -->
      <!-- jQuery  -->
         <script src="adminox/default/assets/js/jquery.min.js"></script>
-        <script src="adminox/default/assets/js/tether.min.js"></script><!-- Tether for Bootstrap -->
+        <script src="adminox/default/assets/js/tether.min.js"></script>
+    <!-- Tether for Bootstrap -->
         <script src="adminox/default/assets/js/bootstrap.min.js"></script>
         <script src="adminox/default/assets/js/metisMenu.min.js"></script>
         <script src="adminox/default/assets/js/waves.js"></script>
@@ -212,7 +263,44 @@
 
         <!-- App js -->
         <script src="adminox/default/assets/js/jquery.core.js"></script>
-        <script src="adminox/default/assets/js/jquery.app.js"></script>
+        <script src="adminox/default/assets/js/jquery.app.js"></script>  
+    
+
+        <!-- Required datatable js -->
+    <script src="../lib/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="../lib/datatables/js/dataTables.bootstrap4.min.js"></script>
+        <!-- Responsive examples -->
+    <script src="adminox/plugins/datatables/dataTables.responsive.min.js"></script>
+    <script src="adminox/plugins/datatables/responsive.bootstrap4.min.js"></script>
+
+        <!-- Sweet-Alert  -->
+    <script src="../lib/sweetalert2/sweetalert2.min.js"></script>
+
+    <!-- auto-page number and search  -->
+    <script type="text/javascript">
+        $(function () {
+            $('[id$=datatable-editable]').prepend($("<thead></thead>").append($('[id$=datatable-editable]').find("tr:first"))).DataTable({
+                "responsive": true,
+                "sPaginationType": "full_numbers",
+            });
+        });
+    </script>
+    
+
+     <!-- alert delay -->
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            window.setTimeout(function () {
+                $(".alert").fadeTo(1500, 0).slideUp(500, function () {
+                    $(this).remove();
+                });
+            }, 5000);
+
+        });
+
+    </script>
 
     <asp:ContentPlaceHolder ID="scriptarea" runat="server">
     </asp:ContentPlaceHolder>

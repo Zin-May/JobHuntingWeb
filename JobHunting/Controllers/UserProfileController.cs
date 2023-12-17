@@ -65,13 +65,13 @@ namespace JobHunting.Controllers
             }
         }
 
-        public bool DeleteUserProfile(tbl_userprofile up)
+        public bool DeleteUserProfile(string id)
         {
             try
             {
                 using (JobHuntingDBDataContext updb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = updb.tbl_userprofiles.Where(urp => urp.UserProfileID == up.UserProfileID).FirstOrDefault();
+                    var obj = updb.tbl_userprofiles.Where(urp => urp.UserProfileID == id).FirstOrDefault();
                     if (obj != null)
                     {
                         updb.tbl_userprofiles.DeleteOnSubmit(obj);

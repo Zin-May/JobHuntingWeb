@@ -23,7 +23,6 @@ namespace JobHunting.Controllers
         {
             try
             {
-
                 using (JobHuntingDBDataContext jldb = new JobHuntingDBDataContext(con))
                 {
                     var obj = jldb.tbl_joblocations.Where(jlo => jlo.JobStreetAddress == jl.JobStreetAddress).FirstOrDefault();
@@ -63,13 +62,13 @@ namespace JobHunting.Controllers
             }
         }
 
-        public bool DeleteJobLocation(tbl_joblocation jl)
+        public bool DeleteJobLocation(string id)
         {
             try
             {
                 using (JobHuntingDBDataContext jldb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jldb.tbl_joblocations.Where(jlo => jlo.JobLocationID == jl.JobLocationID).FirstOrDefault();
+                    var obj = jldb.tbl_joblocations.Where(jlo => jlo.JobLocationID == id).FirstOrDefault();
                     if (obj != null)
                     {
                         jldb.tbl_joblocations.DeleteOnSubmit(obj);
@@ -93,6 +92,22 @@ namespace JobHunting.Controllers
                 {
                     tbl_joblocation jlocation = jldb.tbl_joblocations.FirstOrDefault(jl => jl.JobLocationID == id);
                     return jlocation;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        public tbl_joblocation GetByCity(string id)
+        {
+            try
+            {
+                using (JobHuntingDBDataContext jldb = new JobHuntingDBDataContext(con))
+                {
+                    tbl_joblocation job = jldb.tbl_joblocations.FirstOrDefault(jo => jo.CityID == id);
+                    return job;
 
                 }
             }

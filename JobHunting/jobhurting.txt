@@ -26,17 +26,17 @@ Database
 2.UserProfile
 3.WorkExperience
 4.Skill
-5.Company
-6.Job
-7.JobRole
-8.JobType
-9.Category
-10.JobApply
+5.Company ( insert/update/delete ) All Done
+6.Job	   ( insert/update/delete ) All Done
+7.JobRole ( insert/update/delete )All Done
+8.JobType  ( insert/update/delete )All Done
+9.Category  ( insert/update/delete ) All Done
+10.JobApply  (insert(User)
 11.UserDocument
-12.JobPosition
-13.JobLocation
-14.Country
-15.City
+12.JobPosition ( insert/update/delete )All Done
+13.JobLocation ( insert/update/delete )All Done
+14.Country  ( insert/update/delete ) All Done
+15.City  ( insert/update/delete ) All Done
 
 
 1.User(user registration)
@@ -87,7 +87,7 @@ Phone
 Email
 EmployeeCount
 
-6.Job
+6.Job ( from User )
 ------
 JobID
 CompanyID
@@ -95,6 +95,7 @@ JobRoleID
 JobTypeID
 CategoryID
 JobLocationID *
+JobPositionID #
 Allowence
 Salary
 JobDescription

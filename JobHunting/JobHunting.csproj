@@ -2845,10 +2845,18 @@
     <Content Include="Admin\adminox\plugins\typeahead\typeahead.bundle.min.js" />
     <Content Include="Admin\adminox\plugins\waypoints\jquery.waypoints.min.js" />
     <Content Include="Admin\Category.aspx" />
+    <Content Include="Admin\City.aspx" />
     <Content Include="Admin\Company.aspx" />
+    <Content Include="Admin\Country.aspx" />
     <Content Include="Admin\indexadmin.aspx" />
+    <Content Include="Admin\Job.aspx" />
+    <Content Include="Admin\JobLocation.aspx" />
+    <Content Include="Admin\JobPosition.aspx" />
     <Content Include="Admin\JobRole.aspx" />
     <Content Include="Admin\JobType.aspx" />
+    <Content Include="Admin\ProfileAdmin.aspx" />
+    <Content Include="Admin\ProfileAdminPage.aspx" />
+    <Content Include="Admin\SignUpAdmin.aspx" />
     <Content Include="blogdetail.aspx" />
     <Content Include="bloghome.aspx" />
     <Content Include="contact.aspx" />
@@ -2943,23 +2951,30 @@
     <Content Include="jobboard\services.html" />
     <Content Include="jobboard\testimonials.html" />
     <Content Include="jobcategory.aspx" />
-    <Content Include="joblist.aspx" />
     <Content Include="jobsingle.aspx" />
+    <Content Include="joblist.aspx" />
     <Content Include="lib\bootstrap\css\bootstrap.min.css" />
     <Content Include="lib\bootstrap\js\bootstrap.min.js" />
+    <Content Include="lib\datatables\css\dataTables.bootstrap4.min.css" />
+    <Content Include="lib\datatables\js\dataTables.bootstrap4.min.js" />
+    <Content Include="lib\datatables\js\jquery.dataTables.min.js" />
     <Content Include="lib\images\jobimg.jpg" />
     <Content Include="lib\jquery\jquery.js" />
     <Content Include="lib\jquery\jquery.min.js" />
     <Content Include="lib\jquery\jquery.slim.js" />
     <Content Include="lib\jquery\jquery.slim.min.js" />
+    <Content Include="lib\sweetalert2\sweetalert2.min.css" />
+    <Content Include="lib\sweetalert2\sweetalert2.min.js" />
     <Content Include="login.aspx" />
+    <Content Include="logout.aspx" />
+    <Content Include="signUp.aspx" />
+    <Content Include="Site3\Login.css" />
     <Content Include="Site3\Login\images\4977163.png" />
     <Content Include="Site3\Login\images\8524294.png" />
     <Content Include="Site3\Login\images\pexels-photo-1372971-Recovered.jpg" />
     <Content Include="Site3\Login\section.html" />
     <Content Include="Profile.aspx" />
     <Content Include="ScriptDB.txt" />
-    <Content Include="signup.aspx" />
     <Content Include="Site3\About.css" />
     <Content Include="Site3\About.html" />
     <Content Include="Site3\Blog-Template.css" />
@@ -3016,6 +3031,13 @@
     <Compile Include="Admin\Category.aspx.designer.cs">
       <DependentUpon>Category.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\City.aspx.cs">
+      <DependentUpon>City.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\City.aspx.designer.cs">
+      <DependentUpon>City.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Company.aspx.cs">
       <DependentUpon>Company.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3023,12 +3045,40 @@
     <Compile Include="Admin\Company.aspx.designer.cs">
       <DependentUpon>Company.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Country.aspx.cs">
+      <DependentUpon>Country.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Country.aspx.designer.cs">
+      <DependentUpon>Country.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\indexadmin.aspx.cs">
       <DependentUpon>indexadmin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\indexadmin.aspx.designer.cs">
       <DependentUpon>indexadmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Job.aspx.cs">
+      <DependentUpon>Job.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Job.aspx.designer.cs">
+      <DependentUpon>Job.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\JobLocation.aspx.cs">
+      <DependentUpon>JobLocation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\JobLocation.aspx.designer.cs">
+      <DependentUpon>JobLocation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\JobPosition.aspx.cs">
+      <DependentUpon>JobPosition.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\JobPosition.aspx.designer.cs">
+      <DependentUpon>JobPosition.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\JobRole.aspx.cs">
       <DependentUpon>JobRole.aspx</DependentUpon>
@@ -3043,6 +3093,27 @@
     </Compile>
     <Compile Include="Admin\JobType.aspx.designer.cs">
       <DependentUpon>JobType.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ProfileAdmin.aspx.cs">
+      <DependentUpon>ProfileAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ProfileAdmin.aspx.designer.cs">
+      <DependentUpon>ProfileAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ProfileAdminPage.aspx.cs">
+      <DependentUpon>ProfileAdminPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ProfileAdminPage.aspx.designer.cs">
+      <DependentUpon>ProfileAdminPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\SignUpAdmin.aspx.cs">
+      <DependentUpon>SignUpAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\SignUpAdmin.aspx.designer.cs">
+      <DependentUpon>SignUpAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="blogdetail.aspx.cs">
       <DependentUpon>blogdetail.aspx</DependentUpon>
@@ -3106,19 +3177,19 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>JobHuntingDB.dbml</DependentUpon>
     </Compile>
-    <Compile Include="joblist.aspx.cs">
-      <DependentUpon>joblist.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="joblist.aspx.designer.cs">
-      <DependentUpon>joblist.aspx</DependentUpon>
-    </Compile>
     <Compile Include="jobsingle.aspx.cs">
       <DependentUpon>jobsingle.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="jobsingle.aspx.designer.cs">
       <DependentUpon>jobsingle.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="joblist.aspx.cs">
+      <DependentUpon>joblist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="joblist.aspx.designer.cs">
+      <DependentUpon>joblist.aspx</DependentUpon>
     </Compile>
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
@@ -3127,9 +3198,16 @@
     <Compile Include="login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="logout.aspx.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logout.aspx.designer.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\City.cs" />
-    <Compile Include="Models\Company.cs" />
+    <Compile Include="Models\CompanyModel.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Job.cs" />
     <Compile Include="Models\JobApply.cs" />
@@ -3150,12 +3228,12 @@
       <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="signup.aspx.cs">
-      <DependentUpon>signup.aspx</DependentUpon>
+    <Compile Include="signUp.aspx.cs">
+      <DependentUpon>signUp.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="signup.aspx.designer.cs">
-      <DependentUpon>signup.aspx</DependentUpon>
+    <Compile Include="signUp.aspx.designer.cs">
+      <DependentUpon>signUp.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

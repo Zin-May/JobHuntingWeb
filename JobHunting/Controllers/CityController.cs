@@ -62,13 +62,13 @@ namespace JobHunting.Controllers
             }
         }
 
-        public bool DeleteCity(tbl_city c)
+        public bool DeleteCity(string id)
         {
             try
             {
                 using (JobHuntingDBDataContext cidb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = cidb.tbl_cities.Where(ci => ci.CityID == c.CityID).FirstOrDefault();
+                    var obj = cidb.tbl_cities.Where(ci => ci.CityID == id).FirstOrDefault();
                     if (obj != null)
                     {
                         cidb.tbl_cities.DeleteOnSubmit(obj);
@@ -92,6 +92,45 @@ namespace JobHunting.Controllers
                 {
                     tbl_city city = cidb.tbl_cities.FirstOrDefault(ci => ci.CityID == id);
                     return city;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public bool GetByCityName(string name)
+        {
+            try
+            {
+                using (JobHuntingDBDataContext cdb = new JobHuntingDBDataContext(con))
+                {
+                    tbl_city city = cdb.tbl_cities.FirstOrDefault(c => c.CityName == name);
+                    if (city != null)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public tbl_city GetByCountry(string id)
+        {
+            try
+            {
+                using (JobHuntingDBDataContext cdb = new JobHuntingDBDataContext(con))
+                {
+                    tbl_city job = cdb.tbl_cities.FirstOrDefault(jo => jo.CountryID == id);
+                    return job;
+
                 }
             }
             catch (Exception ex)

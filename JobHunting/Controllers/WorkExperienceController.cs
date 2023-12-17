@@ -65,13 +65,13 @@ namespace JobHunting.Controllers
             }
         }
 
-        public bool DeleteWorkExperience(tbl_workexperience w)
+        public bool DeleteWorkExperience(string id)
         {
             try
             {
                 using (JobHuntingDBDataContext wedb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = wedb.tbl_workexperiences.Where(wex => wex.WorkExperienceID == w.WorkExperienceID).FirstOrDefault();
+                    var obj = wedb.tbl_workexperiences.Where(wex => wex.WorkExperienceID == id).FirstOrDefault();
                     if (obj != null)
                     {
                         wedb.tbl_workexperiences.DeleteOnSubmit(obj);

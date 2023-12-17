@@ -10,28 +10,86 @@ namespace JobHunting.Admin
 {
     public partial class JobRole : System.Web.UI.Page
     {
+        JobRoleController controller = new JobRoleController();
+        tbl_jobrole tbl = new tbl_jobrole();
         protected void Page_Load(object sender, EventArgs e)
         {
-            JobRoleController controller = new JobRoleController();
-            gvJobRoleList.DataSource = controller.GetAllJobRole();
-            gvJobRoleList.DataBind();
 
+        }
+        public List<tbl_jobrole> GetAllJobRole()
+        {
+            return controller.GetAllJobRole().ToList();
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            tbl_jobrole tbl = new tbl_jobrole();
-            tbl.JobRoleID = Guid.NewGuid().ToString();
-            tbl.JobRoleName = txtjobrolename.Value.Trim();
-            JobRoleController controller = new JobRoleController();
-            controller.InsertJobRole(tbl);
-            if (controller.InsertJobRole(tbl))
+            if (controller.GetByJobRoleName(txtJobRoleName.Value.Trim()) != true)
             {
-                txtjobrolename.Value = string.Empty;
+                tbl.JobRoleID = Guid.NewGuid().ToString();
+                tbl.JobRoleName = txtJobRoleName.Value.Trim();
+                var obj = controller.InsertJobRole(tbl);
+                if (obj == true)
+                {
+                    txtJobRoleName.Value = string.Empty;
+                    messagealert.Attributes.Add("class", "alert alert-success alert-dismissible fade show");
+                    lblResult.Text = "Successfully Insert!";
+
+                }
+                else
+                {
+                    messagealert.Attributes.Add("class", "alert alert-danger alert-dismissible fade show");
+                    lblResult.Text = "Try Again!";
+                }
             }
             else
             {
-                lblResult.Text = "Failed";
+                ScriptManager.RegisterStartupScript(Page, this.GetType(), "Warning", "alert('Phease Check Your Data!')", true);
+            }
+            
+        }
+
+        protected void lbtnDelete_Click(object sender, EventArgs e)
+        {
+            string id = hfJRID.Value;
+            JobController jController = new JobController();
+            if (jController.GetByJobRole(id)!=null)
+            {
+                ScriptManager.RegisterStartupScript(Page, this.GetType(), "Warning", "alert('You cannot delete this data!')", true);
+            }
+            else
+            {
+                var obj = controller.DeleteJobRole(id);
+                if (obj == true)
+                {
+                    messagealert.Attributes.Add("class", "alert alert-success alert-dismissible fade show");
+                    lblResult.Text = "Successfully Delete!";
+
+                }
+                else
+                {
+                    messagealert.Attributes.Add("class", "alert alert-danger alert-dismissible fade show");
+                    lblResult.Text = "Try Again!";
+                }
+            }
+        }
+
+        protected void btnUpdate_Click(object sender, EventArgs e)
+        {
+            string id = hfJRID.Value;
+            tbl.JobRoleID = id;
+            tbl.JobRoleName = txtJobRoleName.Value.Trim();
+            var obj = controller.UpdateJobRole(tbl);
+            if (obj == true)
+            {
+                txtJobRoleName.Value = string.Empty;
+                messagealert.Attributes.Add("class", "alert alert-success alert-dismissible fade show");
+                lblResult.Text = "Successfully Update!";
+
+            }
+            else
+            {
+                messagealert.Attributes.Add("class", "alert alert-danger alert-dismissible fade show");
+                lblResult.Text = "Try Again!";
             }
         }
     }

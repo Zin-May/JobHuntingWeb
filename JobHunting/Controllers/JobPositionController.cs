@@ -61,13 +61,13 @@ namespace JobHunting.Controllers
             }
         }
 
-        public bool DeleteJobPosition(tbl_jobposition jp)
+        public bool DeleteJobPosition(string id)
         {
             try
             {
                 using (JobHuntingDBDataContext jpdb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jpdb.tbl_jobpositions.Where(jpo => jpo.JobPositionID == jp.JobPositionID).FirstOrDefault();
+                    var obj = jpdb.tbl_jobpositions.Where(jpo => jpo.JobPositionID == id).FirstOrDefault();
                     if (obj != null)
                     {
                         jpdb.tbl_jobpositions.DeleteOnSubmit(obj);
@@ -96,6 +96,29 @@ namespace JobHunting.Controllers
             catch (Exception ex)
             {
                 return null;
+            }
+        }
+
+        public bool GetByJobPositionName(string name)
+        {
+            try
+            {
+                using (JobHuntingDBDataContext cdb = new JobHuntingDBDataContext(con))
+                {
+                    tbl_jobposition cat = cdb.tbl_jobpositions.FirstOrDefault(c => c.JobPositionName == name);
+                    if (cat != null)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
             }
         }
     }

@@ -1,47 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="JobHunting" Class="JobHuntingDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Table Name="dbo.tbl_category" Member="tbl_category">
+  <Table Name="dbo.tbl_category" Member="tbl_categories">
     <Type Name="tbl_category">
       <Column Name="CategoryID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="CategoryName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tbl_workexperience" Member="tbl_workexperience">
-    <Type Name="tbl_workexperience">
-      <Column Name="WorkExperienceID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="CompanyID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
-      <Column Name="Position" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="StartDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="EndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="IsCurrentJob" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="UserProfileID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.tbl_city" Member="tbl_city">
+  <Table Name="dbo.tbl_city" Member="tbl_cities">
     <Type Name="tbl_city">
       <Column Name="CityID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="CityName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="CountryID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tbl_company" Member="tbl_company">
+  <Table Name="dbo.tbl_company" Member="tbl_companies">
     <Type Name="tbl_company">
       <Column Name="CompanyID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="CompanyName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="CompanyImage" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="Description" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="Address" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="Phone" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="EmployeeCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tbl_country" Member="tbl_country">
+  <Table Name="dbo.tbl_country" Member="tbl_countries">
     <Type Name="tbl_country">
       <Column Name="CountryID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="CountryName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tbl_job" Member="tbl_job">
+  <Table Name="dbo.tbl_job" Member="tbl_jobs">
     <Type Name="tbl_job">
       <Column Name="JobID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="CompanyID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
@@ -49,8 +38,9 @@
       <Column Name="JobTypeID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
       <Column Name="CategoryID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
       <Column Name="JobLocationID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="JobPositionID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
       <Column Name="Allowence" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="Salary" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Salary" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
       <Column Name="JobDescription" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="JobResponsibility" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
@@ -58,7 +48,7 @@
       <Column Name="Status" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tbl_jobapply" Member="tbl_jobapply">
+  <Table Name="dbo.tbl_jobapply" Member="tbl_jobapplies">
     <Type Name="tbl_jobapply">
       <Column Name="JobApplyID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="UserID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
@@ -66,39 +56,39 @@
       <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tbl_joblocation" Member="tbl_joblocation">
+  <Table Name="dbo.tbl_joblocation" Member="tbl_joblocations">
     <Type Name="tbl_joblocation">
       <Column Name="JobLocationID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="JobStreetAddress" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
       <Column Name="CityID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tbl_jobposition" Member="tbl_jobposition">
+  <Table Name="dbo.tbl_jobposition" Member="tbl_jobpositions">
     <Type Name="tbl_jobposition">
       <Column Name="JobPositionID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="JobPositionName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tbl_jobrole" Member="tbl_jobrole">
+  <Table Name="dbo.tbl_jobrole" Member="tbl_jobroles">
     <Type Name="tbl_jobrole">
       <Column Name="JobRoleID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="JobRoleName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tbl_jobtype" Member="tbl_jobtype">
+  <Table Name="dbo.tbl_jobtype" Member="tbl_jobtypes">
     <Type Name="tbl_jobtype">
       <Column Name="JobTypeID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="JobTypeName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tbl_skill" Member="tbl_skill">
+  <Table Name="dbo.tbl_skill" Member="tbl_skills">
     <Type Name="tbl_skill">
       <Column Name="SkillID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
       <Column Name="SkillName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="UserProfileID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tbl_user" Member="tbl_user">
+  <Table Name="dbo.tbl_user" Member="tbl_users">
     <Type Name="tbl_user">
       <Column Name="UserID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="UserName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
@@ -110,7 +100,7 @@
       <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tbl_userdocument" Member="tbl_userdocument">
+  <Table Name="dbo.tbl_userdocument" Member="tbl_userdocuments">
     <Type Name="tbl_userdocument">
       <Column Name="UserDocumentID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
       <Column Name="UserID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
@@ -121,7 +111,7 @@
       <Column Name="Status" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tbl_userprofile" Member="tbl_userprofile">
+  <Table Name="dbo.tbl_userprofile" Member="tbl_userprofiles">
     <Type Name="tbl_userprofile">
       <Column Name="UserProfileID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="UserImage" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
@@ -132,4 +122,72 @@
       <Column Name="UserID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.tbl_workexperience" Member="tbl_workexperiences">
+    <Type Name="tbl_workexperience">
+      <Column Name="WorkExperienceID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CompanyID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="Position" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IsCurrentJob" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="UserProfileID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.JobView" Member="JobViews">
+    <Type Name="JobView">
+      <Column Name="JobID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="CompanyID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="JobRoleID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="JobRoleName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="JobTypeID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="JobTypeName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CategoryID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="CategoryName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="JobLocationID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="JobStreetAddress" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="CityName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CountryName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="JobPositionID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="JobPositionName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Allowence" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Salary" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="JobDescription" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="JobResponsibility" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CompanyImage" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.sp_searchjob" Method="sp_searchjob">
+    <Parameter Name="companyname" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="jrolename" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="countryname" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="sp_searchjobResult">
+      <Column Name="JobID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="CompanyID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="JobRoleID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="JobRoleName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="JobTypeID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="JobTypeName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CategoryID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="CategoryName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="JobLocationID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="JobStreetAddress" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="CityName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CountryName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="JobPositionID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="JobPositionName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Allowence" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Salary" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="JobDescription" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="JobResponsibility" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CompanyImage" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

@@ -61,17 +61,25 @@ namespace JobHunting.Controllers
             }
         }
 
-        public bool DeleteCountry(tbl_country c)
+        public bool DeleteCountry(string id)
         {
             try
             {
                 using (JobHuntingDBDataContext jdb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jdb.tbl_countries.Where(co => co.CountryID == c.CountryID).FirstOrDefault();
+                    var obj = jdb.tbl_countries.Where(co => co.CountryID == id).FirstOrDefault();
                     if (obj != null)
                     {
-                        jdb.tbl_countries.DeleteOnSubmit(obj);
-                        jdb.SubmitChanges();
+                        var checkCountry = jdb.tbl_cities.Where(ci => ci.CountryID == id).FirstOrDefault();
+                        if (checkCountry != null)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            jdb.tbl_countries.DeleteOnSubmit(obj);
+                            jdb.SubmitChanges();
+                        }
                     }
                 }
                 return true;
@@ -97,6 +105,28 @@ namespace JobHunting.Controllers
             catch (Exception ex)
             {
                 return null;
+            }
+        }
+        public bool GetByCountryName(string name)
+        {
+            try
+            {
+                using (JobHuntingDBDataContext cdb = new JobHuntingDBDataContext(con))
+                {
+                    tbl_country country = cdb.tbl_countries.FirstOrDefault(cou => cou.CountryName == name);
+                    if (country != null)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
             }
         }
     }

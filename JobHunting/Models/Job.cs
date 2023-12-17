@@ -13,8 +13,9 @@ namespace JobHunting.Models
         public string JobTypeID { get; set; }
         public string CategoryID { get; set; }
         public string JobLocationID { get; set; }
+        public string JobPositionID { get; set; }
         public string Allowence { get; set; }
-        public int Salary { get; set; }
+        public string Salary { get; set; }
         public string JobDescription { get; set; }
         public string JobResponsibility { get; set; }
         public DateTime CreatedDate { get; set; }

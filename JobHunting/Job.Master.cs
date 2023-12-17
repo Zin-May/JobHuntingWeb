@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -14,9 +15,15 @@ namespace JobHunting
             if (Session["uinfo"] != null)
             {
                 string user = Session["uinfo"].ToString();
-                loginstatus.InnerHtml = user;
+                lblLoginStatus.Text = "Welcome! " + user;
+                divHomePage.Visible = false;
+                divLoginPage.Visible = true;
             }
-
+            else
+            {
+                divHomePage.Visible = true;
+                divLoginPage.Visible = false;
+            }
         }
     }
 }

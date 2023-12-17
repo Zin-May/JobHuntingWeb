@@ -14,7 +14,7 @@ namespace JobHunting.Controllers
 
         public List<tbl_category> GetAllCategory()
         {
-            using(JobHuntingDBDataContext cdb=new JobHuntingDBDataContext(con))
+            using (JobHuntingDBDataContext cdb = new JobHuntingDBDataContext(con))
             {
                 return cdb.tbl_categories.ToList();
             }
@@ -24,8 +24,7 @@ namespace JobHunting.Controllers
         {
             try
             {
-
-                using (JobHuntingDBDataContext cdb=new JobHuntingDBDataContext(con))
+                using (JobHuntingDBDataContext cdb = new JobHuntingDBDataContext(con))
                 {
                     var obj = cdb.tbl_categories.Where(cat => cat.CategoryName == c.CategoryName).FirstOrDefault();
                     if (obj == null)
@@ -63,13 +62,13 @@ namespace JobHunting.Controllers
             }
         }
 
-        public bool DeleteCategory(tbl_category c)
+        public bool DeleteCategory(string id)
         {
             try
             {
                 using (JobHuntingDBDataContext cdb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = cdb.tbl_categories.Where(cat => cat.CategoryID == c.CategoryID).FirstOrDefault();
+                    var obj = cdb.tbl_categories.Where(cat => cat.CategoryID == id).FirstOrDefault();
                     if (obj != null)
                     {
                         cdb.tbl_categories.DeleteOnSubmit(obj);
@@ -98,6 +97,29 @@ namespace JobHunting.Controllers
             catch (Exception ex)
             {
                 return null;
+            }
+        }
+
+        public bool GetByCategoryName(string name)
+        {
+            try
+            {
+                using (JobHuntingDBDataContext cdb = new JobHuntingDBDataContext(con))
+                {
+                    tbl_category cat = cdb.tbl_categories.FirstOrDefault(c => c.CategoryName == name);
+                    if (cat != null)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
             }
         }
     }

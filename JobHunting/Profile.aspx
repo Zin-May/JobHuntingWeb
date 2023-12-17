@@ -1,7 +1,82 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Job.Master" AutoEventWireup="true" CodeBehind="Profile.aspx.cs" Inherits="JobHunting.Profile" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="jobbody" runat="server">
+    <!-- HOME -->
+    <section class="section-hero overlay inner-page bg-image" style="background-image: url('jobboard/images/hero_1.jpg');" id="home-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <h1 class="text-white font-weight-bold">My Profile</h1>
+                    <div class="custom-breadcrumbs">
+                        <a href="#">Home</a> <span class="mx-2 slash">/</span>
+                        <span class="text-white"><strong>
+                            <asp:Label ID="lblName" runat="server"></asp:Label></strong></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="site-section">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-md-6 col-lg-4 mb-5">
+                    <a href="blogdetail.aspx">
+                        <img src="jobboard/images/sq_img_1.jpg" alt="Image" class="img-fluid rounded mb-4"></a>
+                    <h3><a href="blogdetail.aspx" class="text-black">7 Factors for Choosing Between Two Jobs</a></h3>
+                    <div>April 15, 2019 <span class="mx-2">|</span> <a href="#">2 Comments</a></div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-5">
+                    <a href="blogdetail.aspx">
+                        <img src="jobboard/images/sq_img_2.jpg" alt="Image" class="img-fluid rounded mb-4"></a>
+                    <h3><a href="blogdetail.aspxl" class="text-black">How to Write a Creative Cover Letter</a></h3>
+                    <div>April 15, 2019 <span class="mx-2">|</span> <a href="#">2 Comments</a></div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-5">
+                    <a href="blogdetail.aspx">
+                        <img src="jobboard/images/sq_img_4.jpg" alt="Image" class="img-fluid rounded mb-4"></a>
+                    <h3><a href="blogdetail.aspx" class="text-black">The Right Way to Quit a Job You Started</a></h3>
+                    <div>April 15, 2019 <span class="mx-2">|</span> <a href="#">2 Comments</a></div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-5">
+                    <a href="blogdetail.aspx">
+                        <img src="jobboard/images/sq_img_7.jpg" alt="Image" class="img-fluid rounded mb-4"></a>
+                    <h3><a href="blogdetail.aspx" class="text-black">7 Factors for Choosing Between Two Jobs</a></h3>
+                    <div>April 15, 2019 <span class="mx-2">|</span> <a href="#">2 Comments</a></div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-5">
+                    <a href="blogdetail.aspx">
+                        <img src="jobboard/images/sq_img_5.jpg" alt="Image" class="img-fluid rounded mb-4"></a>
+                    <h3><a href="blogdetail.aspx" class="text-black">How to Write a Creative Cover Letter</a></h3>
+                    <div>April 15, 2019 <span class="mx-2">|</span> <a href="#">2 Comments</a></div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-5">
+                    <a href="blogdetail.aspx">
+                        <img src="jobboard/images/sq_img_6.jpg" alt="Image" class="img-fluid rounded mb-4"></a>
+                    <h3><a href="blogdetail.aspx" class="text-black">The Right Way to Quit a Job You Started</a></h3>
+                    <div>April 15, 2019 <span class="mx-2">|</span> <a href="#">2 Comments</a></div>
+                </div>
+            </div>
+            <div class="row pagination-wrap mt-5">
+
+                <div class="col-md-12 text-center ">
+                    <div class="custom-pagination ml-auto">
+                        <a href="#" class="prev">Prev</a>
+                        <div class="d-inline-block">
+                            <a href="#" class="active">1</a>
+                            <a href="#">2</a>
+                            <a href="#">3</a>
+                            <a href="#">4</a>
+                        </div>
+                        <a href="#" class="next">Next</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="scriptarea" runat="server">
 </asp:Content>

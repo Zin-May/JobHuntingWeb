@@ -1,372 +1,210 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/admin.Master" AutoEventWireup="true" CodeBehind="indexadmin.aspx.cs" Inherits="JobHunting.Admin.indexadmin" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">  
-   <!-- C3 charts css -->
-   <link href="adminox/plugins/c3/c3.min.css" rel="stylesheet" type="text/css"  />
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <!-- C3 charts css -->
+    <link href="adminox/plugins/c3/c3.min.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="adminbody" runat="server">
-        
-                <!-- Start content -->
-                <div class="content">
-                    <div class="container-fluid">
 
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="page-title-box">
-                                    <h4 class="page-title float-left">Dashboard</h4>
-
-                                    <ol class="breadcrumb float-right">
-                                        <li class="breadcrumb-item"><a href="#">Admin</a></li>
-                                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                                        <li class="breadcrumb-item active">Dashboard</li>
-                                    </ol>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end row -->
-
-                        <div class="row">
-
-                            <div class="col-lg-3 col-md-6">
-                                <div class="card-box widget-box-two widget-two-custom">
-                                    <i class="mdi mdi-currency-usd widget-two-icon"></i>
-                                    <div class="wigdet-two-content">
-                                        <p class="m-0 text-uppercase font-bold font-secondary text-overflow" title="Statistics">Total Revenue</p>
-                                        <h2 class="font-600"><span><i class="mdi mdi-arrow-up"></i></span> <span data-plugin="counterup">65841</span></h2>
-                                        <p class="m-0">Jan - Apr 2017</p>
-                                    </div>
-                                </div>
-                            </div><!-- end col -->
-
-                            <div class="col-lg-3 col-md-6">
-                                <div class="card-box widget-box-two widget-two-custom">
-                                    <i class="mdi mdi-account-multiple widget-two-icon"></i>
-                                    <div class="wigdet-two-content">
-                                        <p class="m-0 text-uppercase font-bold font-secondary text-overflow" title="Statistics">Total Unique Visitors</p>
-                                        <h2 class="font-600"><span><i class="mdi mdi-arrow-up"></i></span> <span data-plugin="counterup">236521</span></h2>
-                                        <p class="m-0">Jan - Apr 2017</p>
-                                    </div>
-                                </div>
-                            </div><!-- end col -->
-
-                            <div class="col-lg-3 col-md-6">
-                                <div class="card-box widget-box-two widget-two-custom">
-                                    <i class="mdi mdi-crown widget-two-icon"></i>
-                                    <div class="wigdet-two-content">
-                                        <p class="m-0 text-uppercase font-bold font-secondary text-overflow" title="Statistics">Number of Transactions</p>
-                                        <h2 class="font-600"><span><i class="mdi mdi-arrow-up"></i></span> <span data-plugin="counterup">563698</span></h2>
-                                        <p class="m-0">Jan - Apr 2017</p>
-                                    </div>
-                                </div>
-                            </div><!-- end col -->
-
-                            <div class="col-lg-3 col-md-6">
-                                <div class="card-box widget-box-two widget-two-custom">
-                                    <i class="mdi mdi-auto-fix widget-two-icon"></i>
-                                    <div class="wigdet-two-content">
-                                        <p class="m-0 text-uppercase font-bold font-secondary text-overflow" title="Statistics">Conversation Rate</p>
-                                        <h2 class="font-600"><span><i class="mdi mdi-arrow-up"></i></span> <span data-plugin="counterup">2.07</span>%</h2>
-                                        <p class="m-0">Jan - Apr 2017</p>
-                                    </div>
-                                </div>
-                            </div><!-- end col -->
-
-                        </div>
-                        <!-- end row -->
-
-
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <div class="card-box">
-                                    <h4 class="header-title m-t-0 m-b-30">Revenue Comparison</h4>
-
-                                    <div class="text-center">
-                                        <h5 class="font-normal text-muted">You have to pay</h5>
-                                        <h3 class="m-b-30"><i class="mdi mdi-arrow-up-bold-hexagon-outline text-success"></i> 25643 <small>USD</small></h3>
-                                    </div>
-
-                                    <div class="chart-container">
-                                        <div class="" style="height:280px" id="platform_type_dates_donut"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4">
-                                <div class="card-box">
-                                    <h4 class="header-title m-t-0 m-b-30">Visitors Overview</h4>
-
-                                    <div class="text-center">
-                                        <h5 class="font-normal text-muted">You have to pay</h5>
-                                        <h3 class="m-b-30"><i class="mdi mdi-arrow-down-bold-hexagon-outline text-danger"></i> 5623 <small>USD</small></h3>
-                                    </div>
-
-                                    <div class="chart-container">
-                                        <div class="" style="height:280px" id="user_type_bar"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4">
-                                <div class="card-box">
-                                    <h4 class="header-title m-t-0 m-b-30">Goal Completion</h4>
-
-                                    <div class="text-center">
-                                        <h5 class="font-normal text-muted">You have to pay</h5>
-                                        <h3 class="m-b-30"><i class="mdi mdi-arrow-up-bold-hexagon-outline text-success"></i> 12548 <small>USD</small></h3>
-                                    </div>
-
-                                    <div class="chart-container">
-                                        <div class="chart has-fixed-height" style="height:280px" id="page_views_today"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end row -->
-
-
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="card-box">
-                                    <h4 class="m-t-0 header-title"><b>Recent Candidates</b></h4>
-                                    <p class="text-muted font-14 m-b-20">
-                                        Your awesome text goes here.
-                                    </p>
-
-                                    <div class="table-responsive">
-                                        <table class="table table-hover m-0 table-actions-bar">
-
-                                            <thead>
-                                            <tr>
-                                                <th>
-                                                    <div class="btn-group dropdown">
-                                                        <button type="button" class="btn btn-secondary btn-xs dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false"><i class="caret"></i></button>
-                                                        <div class="dropdown-menu">
-                                                            <a class="dropdown-item" href="#">Dropdown link</a>
-                                                            <a class="dropdown-item" href="#">Dropdown link</a>
-                                                        </div>
-                                                    </div>
-                                                </th>
-                                                <th>Name</th>
-                                                <th>Location</th>
-                                                <th>Job Timing</th>
-                                                <th>Salary</th>
-                                                <th>Action</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td>
-                                                    <img src="adminox/default/assets/images/users/avatar-2.jpg" alt="contact-img" title="contact-img" class="rounded-circle thumb-sm" />
-                                                </td>
-
-                                                <td>
-                                                    <h5 class="m-b-0 m-t-0 font-600">Tomaslau</h5>
-                                                    <p class="m-b-0"><small>Web Designer</small></p>
-                                                </td>
-
-                                                <td>
-                                                    <i class="mdi mdi-map-marker text-primary"></i> New York
-                                                </td>
-
-                                                <td>
-                                                    <i class="mdi mdi-clock text-success"></i> Full Time
-                                                </td>
-
-                                                <td>
-                                                    <i class="mdi mdi-currency-usd text-warning"></i> 3265
-                                                </td>
-
-                                                <td>
-                                                    <a href="#" class="table-action-btn"><i class="mdi mdi-pencil"></i></a>
-                                                    <a href="#" class="table-action-btn"><i class="mdi mdi-close"></i></a>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>
-                                                    <img src="adminox/default/assets/images/users/avatar-3.jpg" alt="contact-img" title="contact-img" class="rounded-circle thumb-sm" />
-                                                </td>
-
-                                                <td>
-                                                    <h5 class="m-b-0 m-t-0 font-600">Erwin E. Brown</h5>
-                                                    <p class="m-b-0"><small>Programmer</small></p>
-                                                </td>
-
-                                                <td>
-                                                    <i class="mdi mdi-map-marker text-primary"></i> California
-                                                </td>
-
-                                                <td>
-                                                    <i class="mdi mdi-clock text-success"></i> Part Time
-                                                </td>
-
-                                                <td>
-                                                    <i class="mdi mdi-currency-usd text-warning"></i> 1365
-                                                </td>
-
-                                                <td>
-                                                    <a href="#" class="table-action-btn"><i class="mdi mdi-pencil"></i></a>
-                                                    <a href="#" class="table-action-btn"><i class="mdi mdi-close"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <img src="adminox/default/assets/images/users/avatar-4.jpg" alt="contact-img" title="contact-img" class="rounded-circle thumb-sm" />
-                                                </td>
-
-                                                <td>
-                                                    <h5 class="m-b-0 m-t-0 font-600">Margeret V. Ligon</h5>
-                                                    <p class="m-b-0"><small>Web Designer</small></p>
-                                                </td>
-
-                                                <td>
-                                                    <i class="mdi mdi-map-marker text-primary"></i> New York
-                                                </td>
-
-                                                <td>
-                                                    <i class="mdi mdi-clock text-success"></i> Full Time
-                                                </td>
-
-                                                <td>
-                                                    <i class="mdi mdi-currency-usd text-warning"></i> 115248
-                                                </td>
-
-                                                <td>
-                                                    <a href="#" class="table-action-btn"><i class="mdi mdi-pencil"></i></a>
-                                                    <a href="#" class="table-action-btn"><i class="mdi mdi-close"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <img src="adminox/default/assets/images/users/avatar-5.jpg" alt="contact-img" title="contact-img" class="rounded-circle thumb-sm" />
-                                                </td>
-
-                                                <td>
-                                                    <h5 class="m-b-0 m-t-0 font-600">Jose D. Delacruz</h5>
-                                                    <p class="m-b-0"><small>Web Developer</small></p>
-                                                </td>
-
-                                                <td>
-                                                    <i class="mdi mdi-map-marker text-primary"></i> New York
-                                                </td>
-
-                                                <td>
-                                                    <i class="mdi mdi-clock text-success"></i> Part Time
-                                                </td>
-
-                                                <td>
-                                                    <i class="mdi mdi-currency-usd text-warning"></i> 2451
-                                                </td>
-
-                                                <td>
-                                                    <a href="#" class="table-action-btn"><i class="mdi mdi-pencil"></i></a>
-                                                    <a href="#" class="table-action-btn"><i class="mdi mdi-close"></i></a>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>
-                                                    <img src="adminox/default/assets/images/users/avatar-8.jpg" alt="contact-img" title="contact-img" class="rounded-circle thumb-sm" />
-                                                </td>
-
-                                                <td>
-                                                    <h5 class="m-b-0 m-t-0 font-600">Luke J. Sain</h5>
-                                                    <p class="m-b-0"><small>Web Designer</small></p>
-                                                </td>
-
-                                                <td>
-                                                    <i class="mdi mdi-map-marker text-primary"></i> Australia
-                                                </td>
-
-                                                <td>
-                                                    <i class="mdi mdi-clock text-success"></i> Part Time
-                                                </td>
-
-                                                <td>
-                                                    <i class="mdi mdi-currency-usd text-warning"></i> 3265
-                                                </td>
-
-                                                <td>
-                                                    <a href="#" class="table-action-btn"><i class="mdi mdi-pencil"></i></a>
-                                                    <a href="#" class="table-action-btn"><i class="mdi mdi-close"></i></a>
-                                                </td>
-                                            </tr>
-
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <!-- end col -->
-
-                            <div class="col-lg-3">
-                                <div class="card-box">
-                                    <h4 class="header-title m-t-0 m-b-30">Total Unique Visitors</h4>
-
-                                    <div class="widget-chart text-center">
-
-                                        <div id="donut-chart" style="height: 270px;"></div>
-
-                                        <div class="row text-center m-t-30">
-                                            <div class="col-6">
-                                                <h3 data-plugin="counterup">1,507</h3>
-                                                <p class="text-muted m-b-5">Visitors Male</p>
-                                            </div>
-                                            <div class="col-6">
-                                                <h3 data-plugin="counterup">854</h3>
-                                                <p class="text-muted m-b-5">Visitors Female</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-
-                            <div class="col-lg-3">
-                                <div class="card-box">
-                                    <h4 class="header-title m-t-0 m-b-30">Number of Transactions</h4>
-
-                                    <div class="widget-chart text-center">
-
-                                        <div id="pie-chart" style="height: 270px;"></div>
-
-                                        <div class="row text-center m-t-30">
-                                            <div class="col-6">
-                                                <h3 data-plugin="counterup">2,854</h3>
-                                                <p class="text-muted m-b-5">Payment Done</p>
-                                            </div>
-                                            <div class="col-6">
-                                                <h3 data-plugin="counterup">22</h3>
-                                                <p class="text-muted m-b-5">Payment Due</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </div>
-                        <!--- end row -->
-
-                    </div> <!-- container -->
-
+    <!-- Start content -->
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box">
+                        <h4 class="page-title float-left">Dashboard 2</h4>
+                        <ol class="breadcrumb float-right">
+                            <li class="breadcrumb-item"><a href="#">Adminox</a></li>
+                            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Dashboard 2</li>
+                        </ol>
+                        <div class="clearfix"></div>
+                    </div>
                 </div>
+            </div>
+            <!-- end row -->
+
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="card-box widget-box-four">
+                                <div id="dashboard-1" class="widget-box-four-chart"></div>
+                                <div class="wigdet-four-content pull-left">
+                                    <h2 class="m-t-0 font-16 font-600 m-b-5 text-overflow" title="Total Unique Visitors">Job Type</h2>
+                                    <p></p>
+                                    <% foreach (var res in GetAllJobRole())
+                                        { %>
+                                    <p class="font-secondary text-muted"><%=res.JobRoleName%></p>
+                                    <%  } %>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <!-- end col -->
+
+                        <div class="col-sm-4">
+                            <div class="card-box widget-box-four">
+                                <div id="dashboard-2" class="widget-box-four-chart"></div>
+                                <div class="wigdet-four-content pull-left">
+                                    <h3 class="m-t-0 font-16 font-600 m-b-5 text-overflow" title="Total Unique Visitors">Job Role</h3>
+                                    <p></p>
+                                    <% foreach (var res in GetAllJobType())
+                                        { %>
+                                    <p class="font-secondary text-muted"><%=res.JobTypeName%></p>
+                                    <%  } %>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <!-- end col -->
+
+                        <div class="col-sm-4">
+                            <div class="card-box widget-box-four">
+                                <div id="dashboard-3" class="widget-box-four-chart"></div>
+                                <div class="wigdet-four-content pull-left">
+                                    <h4 class="m-t-0 font-16 font-600 m-b-5 text-overflow" title="Number of Transactions">Number of Transactions</h4>
+                                    <p class="font-secondary text-muted">Jan - Apr 2017</p>
+                                    <h3 class="m-b-0 m-t-20 font-600"><span>$</span> <span data-plugin="counterup">28,5960</span></h3>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <!-- end col -->
+
+                    </div>
+                    <!-- end row -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card-box">
+                                <h4 class="header-title m-t-0">Company</h4>
+                                <div class="text-center">
+                                    <div class="row">
+                                        <% foreach (var res in GetAllJob())
+                                            { %>
+                                        <div class="col-4">
+                                            <div class="m-t-20 m-b-20">
+                                                <div class="company-card card-box">
+                                                    <img src="assets/images/companies/apple.png" alt="logo" class="company-logo">
+                                                    <p class="text-uppercase m-b-5 font-13 font-600"><%=res.CompanyName%></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <%  } %>
+                                    </div>
+                                </div>
+                                <div id="morris-bar-stacked" style="height: 310px;"></div>
+                            </div>
+                        </div>
+                        <!-- end col -->
+                    </div>
+                    <!-- end row -->
+                </div>
+                <!-- end col -->
+
+
+                <div class="col-lg-4">
+                    <div class="card-box text-center">
+                        <div class="text-center">
+                            <h3 class="font-normal text-muted">Category</h3>
+                            <p></p>
+                            <% foreach (var res in GetAllCategory())
+                                { %>
+                            <h5 class="m-b-30"><i class="mdi mdi-arrow-up-bold-hexagon-outline text-success"></i><%=res.CategoryName%></h5>
+                            <%  } %>
+                        </div>
+                        <div id="morris-line-example" style="height: 180px;"></div>
+                    </div>
+
+
+                    <div class="card-box">
+                        <h4 class="header-title m-t-0 m-b-15">Recent Notifications</h4>
+                        <div class="m-b-15">
+                            <p><span class="pull-right text-dark">Mark Loyerdn</span> <span class="label label-primary">Visitor</span></p>
+                            <p class="font-13 m-b-5">Praesent libero. Nunc nec dui vitae urna cursus lacinia. In venenatis eget justo in dictum. Vestibulum auctor raesent quisnm.</p>
+                            <p class="font-13"><i>2 Min ago</i></p>
+                        </div>
+                        <div class="">
+                            <p><span class="pull-right text-dark">Mark Loyerdn</span> <span class="label label-success">Seller</span></p>
+                            <p class="font-13 m-b-5">Praesent libero. Nunc nec dui vitae urna cursus lacinia. In venenatis eget justo in dictum. Vestibulum auctor raesent quisnm.</p>
+                            <p class="font-13 m-b-0"><i>5 Hours ago</i></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- end col -->
+
+            </div>
+            <!-- end row -->
+
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card-box">
+                        <h4 class="m-t-0 header-title"><b>Job List</b></h4>
+
+                        <div class="table-responsive">
+                            <table class="table m-0 table-colored table-primary table-hover">
+                                <thead>
+                                    <tr>
+                                        <th hidden>JobID</th>
+                                        <th>Company</th>
+                                        <th>JobRole</th>
+                                        <th>JobType</th>
+                                        <th>Category</th>
+                                        <th>JobLocation</th>
+                                        <th>JobPosition</th>
+                                        <th>Allowence</th>
+                                        <th>Salary</th>
+                                        <th>Status</th>
+                                        <th>CreatedDate</th>
+                                        <th>UpdatedDate</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% foreach (var res in GetAllJob())
+                                        { %>
+                                    <tr>
+                                        <td class="jid" hidden><%=res.JobID %></td>
+                                        <td class="cid"><%=res.CompanyName%></td>
+                                        <td class="jrid"><%=res.JobRoleName%></td>
+                                        <td class="jtid"><%=res.JobTypeName%></td>
+                                        <td class="caid"><%=res.CategoryName%></td>
+                                        <td class="jlid"><%=res.JobStreetAddress%> , <%=res.CityName%> , <%=res.CountryName%></td>
+                                        <td class="jpid"><%=res.JobPositionName%></td>
+                                        <td class="allow"><%=res.Allowence%></td>
+                                        <td class="salary"><%=res.Salary%></td>
+                                        <td class="status"><%=res.Status%></td>
+                                        <td class="cdate"><%=res.CreatedDate%></td>
+                                        <td class="udate"><%=res.UpdatedDate%></td>
+                                    </tr>
+                                    <%  } %>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+
+        </div>
+        <!-- container -->
+
+    </div>
     <!-- content -->
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="scriptarea" runat="server">
-        <!-- Counter js  -->
-        <script src="adminox/plugins/waypoints/jquery.waypoints.min.js"></script>
-        <script src="adminox/plugins/counterup/jquery.counterup.min.js"></script>
+    <!-- Counter js  -->
+    <script src="adminox/plugins/waypoints/jquery.waypoints.min.js"></script>
+    <script src="adminox/plugins/counterup/jquery.counterup.min.js"></script>
 
-        <!--C3 Chart-->
-        <script type="text/javascript" src="adminox/plugins/d3/d3.min.js"></script>
-        <script type="text/javascript" src="adminox/plugins/c3/c3.min.js"></script>
+    <!--C3 Chart-->
+    <script type="text/javascript" src="adminox/plugins/d3/d3.min.js"></script>
+    <script type="text/javascript" src="adminox/plugins/c3/c3.min.js"></script>
 
-        <!--Echart Chart-->
-        <script src="adminox/plugins/echart/echarts-all.js"></script>
+    <!--Echart Chart-->
+    <script src="adminox/plugins/echart/echarts-all.js"></script>
 
-        <!-- Dashboard init -->
-        <script src="adminox/default/assets/pages/jquery.dashboard.js"></script>
+    <!-- Dashboard init -->
+    <script src="adminox/default/assets/pages/jquery.dashboard.js"></script>
 </asp:Content>

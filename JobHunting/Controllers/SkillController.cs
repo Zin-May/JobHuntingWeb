@@ -61,13 +61,13 @@ namespace JobHunting.Controllers
             }
         }
 
-        public bool DeleteSkill(tbl_skill s)
+        public bool DeleteSkill(string id)
         {
             try
             {
                 using (JobHuntingDBDataContext sdb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = sdb.tbl_skills.Where(sk => sk.SkillID == s.SkillID).FirstOrDefault();
+                    var obj = sdb.tbl_skills.Where(sk => sk.SkillID == id).FirstOrDefault();
                     if (obj != null)
                     {
                         sdb.tbl_skills.DeleteOnSubmit(obj);

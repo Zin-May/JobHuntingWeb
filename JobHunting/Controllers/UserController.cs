@@ -24,7 +24,7 @@ namespace JobHunting.Controllers
             {
                 using (JobHuntingDBDataContext udb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = udb.tbl_users.Where(ur => ur.UserName == u.UserName).FirstOrDefault();
+                    var obj = udb.tbl_users.Where(ur => ur.UserName == u.UserID).FirstOrDefault();
                     if (obj == null)
                     {
                         udb.tbl_users.InsertOnSubmit(u);
@@ -66,13 +66,13 @@ namespace JobHunting.Controllers
             }
         }
 
-        public bool DeleteUser(tbl_user u)
+        public bool DeleteUser(string id)
         {
             try
             {
                 using (JobHuntingDBDataContext udb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = udb.tbl_users.Where(ur => ur.UserID == u.UserID).FirstOrDefault();
+                    var obj = udb.tbl_users.Where(ur => ur.UserID == id).FirstOrDefault();
                     if (obj != null)
                     {
                         udb.tbl_users.DeleteOnSubmit(obj);
@@ -102,12 +102,12 @@ namespace JobHunting.Controllers
             }
         }
 
-        public tbl_user GetLogin(string username,string password)
+        public tbl_user GetLogin(string username, string password)
         {
             using (JobHuntingDBDataContext udb = new JobHuntingDBDataContext(con))
             {
                 tbl_user user = udb.tbl_users.FirstOrDefault(u => u.UserName == username && u.Password == password);
-                if(user == null)
+                if (user == null)
                 {
                     return null;
                 }

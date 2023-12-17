@@ -62,13 +62,13 @@ namespace JobHunting.Controllers
             }
         }
 
-        public bool DeleteJobApply(tbl_jobapply ja)
+        public bool DeleteJobApply(string id)
         {
             try
             {
                 using (JobHuntingDBDataContext jadb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jadb.tbl_jobapplies.Where(jap => jap.JobApplyID == ja.JobApplyID).FirstOrDefault();
+                    var obj = jadb.tbl_jobapplies.Where(jap => jap.JobApplyID == id).FirstOrDefault();
                     if (obj != null)
                     {
                         jadb.tbl_jobapplies.DeleteOnSubmit(obj);

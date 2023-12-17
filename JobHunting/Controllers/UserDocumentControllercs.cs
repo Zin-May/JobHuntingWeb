@@ -65,13 +65,13 @@ namespace JobHunting.Controllers
             }
         }
 
-        public bool DeleteUserDocument(tbl_userdocument ud)
+        public bool DeleteUserDocument(string id)
         {
             try
             {
                 using (JobHuntingDBDataContext uddb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = uddb.tbl_userdocuments.Where(urd => urd.UserDocumentID == ud.UserDocumentID).FirstOrDefault();
+                    var obj = uddb.tbl_userdocuments.Where(urd => urd.UserDocumentID == id).FirstOrDefault();
                     if (obj != null)
                     {
                         uddb.tbl_userdocuments.DeleteOnSubmit(obj);

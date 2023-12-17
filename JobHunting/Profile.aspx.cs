@@ -11,6 +11,15 @@ namespace JobHunting
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["uinfo"] != null)
+            {
+                string user = Session["uinfo"].ToString();
+                lblName.Text = user;
+            }
+            else
+            {
+                lblName.Text = "Blog Home";
+            }
 
         }
     }

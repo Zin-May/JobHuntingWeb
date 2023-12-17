@@ -26,7 +26,7 @@ namespace JobHunting.Controllers
             {
                 using (JobHuntingDBDataContext jrdb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jrdb.tbl_jobroles.Where(jro => jro.JobRoleName == jr.JobRoleName).FirstOrDefault();
+                    var obj = jrdb.tbl_jobroles.Where(jro => jro.JobRoleName == jr.JobRoleID).FirstOrDefault();
                     if (obj == null)
                     {
                         jrdb.tbl_jobroles.InsertOnSubmit(jr);
@@ -62,13 +62,13 @@ namespace JobHunting.Controllers
             }
         }
 
-        public bool DeleteJobRole(tbl_jobrole jr)
+        public bool DeleteJobRole(string id)
         {
             try
             {
                 using (JobHuntingDBDataContext jrdb = new JobHuntingDBDataContext(con))
                 {
-                    var obj = jrdb.tbl_jobroles.Where(jro => jro.JobRoleID == jr.JobRoleID).FirstOrDefault();
+                    var obj = jrdb.tbl_jobroles.Where(jro => jro.JobRoleID == id).FirstOrDefault();
                     if (obj != null)
                     {
                         jrdb.tbl_jobroles.DeleteOnSubmit(obj);
@@ -96,6 +96,28 @@ namespace JobHunting.Controllers
             catch (Exception ex)
             {
                 return null;
+            }
+        }
+        public bool GetByJobRoleName(string name)
+        {
+            try
+            {
+                using (JobHuntingDBDataContext cdb = new JobHuntingDBDataContext(con))
+                {
+                    tbl_jobrole jrole = cdb.tbl_jobroles.FirstOrDefault(jr => jr.JobRoleName == name);
+                    if (jrole != null)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
             }
         }
     }

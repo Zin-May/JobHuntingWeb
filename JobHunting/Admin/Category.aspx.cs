@@ -10,27 +10,78 @@ namespace JobHunting.Admin
 {
     public partial class Category : System.Web.UI.Page
     {
+        CategoryController controller = new CategoryController();
+        tbl_category tbl = new tbl_category();
         protected void Page_Load(object sender, EventArgs e)
         {
-            CategoryController controller = new CategoryController();
-            gvCategoryList.DataSource = controller.GetAllCategory();
-            gvCategoryList.DataBind();
+
+        }
+        public List<tbl_category> GetAllCategory()
+        {
+            return controller.GetAllCategory().ToList();
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            tbl_category tbl=new tbl_category();
-            tbl.CategoryID = Guid.NewGuid().ToString();
-            tbl.CategoryName = txtcategoryname.Value.Trim();
-            CategoryController controller = new CategoryController();
-            controller.InsertCategory(tbl);
-            if(controller.InsertCategory(tbl))
+            if (controller.GetByCategoryName(txtCategoryName.Value.Trim()) != true)
             {
-                txtcategoryname.Value = string.Empty;
+                tbl.CategoryID = Guid.NewGuid().ToString();
+                tbl.CategoryName = txtCategoryName.Value.Trim();
+                var obj = controller.InsertCategory(tbl);
+                if (obj == true)
+                {
+                    txtCategoryName.Value = string.Empty;
+                    messagealert.Attributes.Add("class", "alert alert-success alert-dismissible fade show");
+                    lblResult.Text = "Successfully Insert!";
+                }
+                else
+                {
+                    messagealert.Attributes.Add("class", "alert alert-danger alert-dismissible fade show");
+                    lblResult.Text = "Try Again!";
+                }
             }
             else
             {
-                lblResult.Text = "Failed";
+                ScriptManager.RegisterStartupScript(Page, this.GetType(), "Warning", "alert('Phease Check Your Data!')", true);
+            } 
+        }
+
+        protected void btnUpdate_Click(object sender, EventArgs e)
+        {
+            string id = hfCID.Value;
+            tbl.CategoryID = id;
+            tbl.CategoryName = txtCategoryName.Value.Trim();
+            var obj = controller.UpdateCategory(tbl);
+            if (obj == true)
+            {
+                txtCategoryName.Value = string.Empty;
+                messagealert.Attributes.Add("class", "alert alert-success alert-dismissible fade show");
+                lblResult.Text = "Successfully Update!";
+
+            }
+            else
+            {
+                messagealert.Attributes.Add("class", "alert alert-danger alert-dismissible fade show");
+                lblResult.Text = "Try Again!";
+            }
+
+        }
+
+        protected void lbtnDelete_Click(object sender, EventArgs e)
+        {
+           // lbtnDelete.Attributes.Add("onclick", "return ConfirmDelete();");
+            string id = hfCID.Value;
+            var obj = controller.DeleteCategory(id);
+            if (obj == true)
+            {
+                messagealert.Attributes.Add("class", "alert alert-success alert-dismissible fade show");
+                lblResult.Text = "Successfully Delete!";
+
+            }
+            else
+            {
+                messagealert.Attributes.Add("class", "alert alert-danger alert-dismissible fade show");
+                lblResult.Text = "Try Again!";
             }
 
         }
